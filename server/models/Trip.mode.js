@@ -2,9 +2,18 @@ const mongoose = require('mongoose');
 
 // Define the main trip schema
 const tripSchema = new mongoose.Schema({
-  tripId: Number,
-  tripName: String,
-  guideId: String,
+  tripId: {
+    type: String,
+    required: false
+  },
+  tripName: {
+    type: String,
+    required: [true, 'name is requred'],
+  },
+  guideId: {
+    type: String,
+    required: false
+  },
   travelersList: [
     {
       userId: Number,
