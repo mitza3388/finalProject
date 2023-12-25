@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const toysRoutes = require("../routes/toys.routes");
+const tripsRoutes = require("../routes/trip.routes");
 const userRoutes = require("../routes/user.routes");
 const path = require("path");
 
@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname,"public")));
 
-app.use("/api/v1/toys", toysRoutes);
+app.use("/api/v1/trips", tripsRoutes);
 app.use("/api/v1/users", userRoutes);
 
 app.get("/test", (req, res) => {
