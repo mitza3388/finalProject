@@ -18,6 +18,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    myTrips:[{tripId: {
+        type: String,
+        required: false
+      }}]
 });
 
 // Do thing to the schema before saving
