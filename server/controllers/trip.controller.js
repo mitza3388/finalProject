@@ -35,3 +35,79 @@ exports.getTripsByGuideId = async (req, res, next) => {
         res.sendStatus(400);
     }
 }
+
+exports.getParticipantsByTripId = async (req, res, next) => {
+    const tripId = req.params.id;
+
+  try {
+    // Find the trip by ID
+    const trip = await Trip.findOne({ tripId });
+
+    if (!trip) {
+      return res.status(404).json({ message: 'Trip not found' });
+    }
+
+    // Extract participants from the travelersList array
+    const participants = trip.travelersList;
+
+    res.status(200).json({ participants });
+  } catch (error) {
+    console.error('Error fetching participants:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+exports.getRouteByTripId = async (req, res, next) => {
+    const tripId = req.params.id;
+  
+    try {
+      // Find the trip by ID
+      const trip = await Trip.findOne({ tripId });
+  
+      if (!trip) {
+        return res.status(404).json({ message: 'Trip not found' });
+      }
+  
+      // Extract route information from the route array
+      const route = trip.route;
+  
+      res.status(200).json({ route });
+    } catch (error) {
+      console.error('Error fetching route:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  
+
+  exports.getParticipantsByTripId = async (req, res, next) => {
+    const tripId = req.params.id;
+
+  try {
+    // Find the trip by ID
+    const trip = await Trip.findOne({ tripId });
+
+    if (!trip) {
+      return res.status(404).json({ message: 'Trip not found' });
+    }
+
+    // Extract participants from the travelersList array
+    const participants = trip.travelersList;
+
+    res.status(200).json({ participants });
+  } catch (error) {
+    console.error('Error fetching participants:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+
+exports.editTrip = async (req, res, next) => {
+    try {
+        const trip = await Trip.updateOne({ _id: req.params.editId }, req.body);
+        res.json(trip);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(400).send(error);
+    }
+};
