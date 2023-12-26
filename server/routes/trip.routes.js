@@ -1,5 +1,5 @@
 const express = require("express");
-const { getTripByGuideId, getTripsByTripId} = require("../controllers/trip.controller");
+const { getTripsByGuideId, getTripByTripId, addNewTrip, editTrip} = require("../controllers/trip.controller");
 const { auth, authNoPermistion } = require("../middlewares/auth");
 const router = express.Router();
 
@@ -7,8 +7,11 @@ const router = express.Router();
 
 // crud => 
 
-router.get("/getTripByGuideId/:id", getTripByGuideId);
-router.get("/getTripsByTripId/:id", getTripsByTripId);
+
+router.get("/getTripByTripId/:id",auth(), getTripByTripId);
+router.get("/getTripsByGuideId",auth(), getTripsByGuideId);
+
+router.post("/addNewTrip",auth(), addNewTrip);
 
 
 

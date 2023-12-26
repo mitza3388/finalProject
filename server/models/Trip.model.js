@@ -41,5 +41,4 @@ const tripSchema = new mongoose.Schema({
 
 // Create the model for the Trip collection
 const Trip = mongoose.model('Trip', tripSchema);
-
-module.exports = Trip;
+module.exports.Trip = Trip;
