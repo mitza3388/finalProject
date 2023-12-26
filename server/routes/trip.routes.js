@@ -1,7 +1,7 @@
-const express = require("express");
-const { getTripByGuideId, getTripsByTripId} = require("../controllers/trip.controller");
-const { auth, authNoPermistion } = require("../middlewares/auth");
-const router = express.Router();
+import { Router } from "express";
+import { getTripByGuideId, getTripsByTripId } from "../controllers/trip.controller";
+import { auth, authNoPermistion } from "../middlewares/auth";
+const router = Router();
 
 
 
@@ -13,5 +13,5 @@ router.get("/getTripsByTripId/:id", getTripsByTripId);
 
 
 
-module.exports = router;
+export default router;
 
