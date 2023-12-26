@@ -12,7 +12,6 @@ const userJoiSchema = {
         password: Joi.string().max(20).required(),
         email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')).required(),
         name: Joi.string().required(),
-        date_created: Joi.date()
     })
 };
 
