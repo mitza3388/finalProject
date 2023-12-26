@@ -9,7 +9,6 @@ const router = express.Router();
 
 router.get("/getTripByGuideId/:id", getTripByGuideId);
 router.get("/getTripsByTripId/:id", getTripsByTripId);
-//router.get("/getTripsByTripId/:id", getTripsByTripId);
 
 
 
