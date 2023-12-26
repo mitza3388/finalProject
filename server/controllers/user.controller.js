@@ -12,7 +12,17 @@ const userJoiSchema = {
         password: Joi.string().max(20).required(),
         email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')).required(),
         name: Joi.string().required(),
-    })
+    }),
+    deleteUser: Joi.object().keys({
+        id: Joi.string().required(),
+    }),
+
+    updateUser: Joi.object().keys({
+        userId: Joi.string().required(),
+        // Add other fields that can be updated
+        // Example: name: Joi.string(),
+        //         email: Joi.string().email({ tlds: { allow: ['com'] } }),
+    }),
 };
 
 exports.register = async (req, res, next) => {
@@ -34,7 +44,7 @@ exports.register = async (req, res, next) => {
         await newUser.save();
 
         //* generate token
-        
+
         //* response to the client
         return res.status(201).send("succed register");
     } catch (error) {
@@ -71,6 +81,43 @@ exports.login = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.deleteUser = async (req, res) => {
+    const { userId } = req.params;
+  
+    try {
+      // Find user by userId and delete
+      const deleteUser = await User.findByIdAndDelete(userId);
+  
+      if (!deleteUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      return res.status(200).json({ message: 'User deleted successfully', deleteUser });
+    } catch (error) {
+      return res.status(500).json({ message: 'Error deleting user', error: error.message });
+    }
+  };
+  
+  // updateUser function
+  exports.updateUser = async (req, res) => {
+    const { userId } = req.params;
+    const updatedData = req.body;
+  
+    try {
+      // Find user by userId and update with the provided data
+      const updateUser = await User.findByIdAndUpdate(userId, updatedData, { new: true });
+  
+      if (!updateUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      return res.status(200).json({ message: 'User updated successfully', updateUser });
+    } catch (error) {
+      return res.status(500).json({ message: 'Error updating user', error: error.message });
+    }
+  };
+
 
 
 
