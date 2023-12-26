@@ -7,12 +7,14 @@ const router = express.Router();
 
 // crud => 
 
-router.get("/getTripByGuideId/:id", getTripByGuideId);
-router.get("/getTripsByTripId/:id", getTripsByTripId);
 router.get('/getParticipantsByTripId/:id', getParticipantsByTripId);
 router.get('/getRouteByTripId/:id', getRouteByTripId);
 router.get('/getEquipmentListByTripId/:id', getEquipmentListByTripId);
 router.put("/editTrip/:id",auth(),editTrip);
+router.get("/getTripByTripId/:id",auth(), getTripByTripId);
+router.get("/getTripsByGuideId",auth(), getTripsByGuideId);
+router.post("/addNewTrip",auth(), addNewTrip);
+
 
 
 

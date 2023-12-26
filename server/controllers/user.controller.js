@@ -8,15 +8,14 @@ const userJoiSchema = {
         password: Joi.string(),
         email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')),
     }),
-    signup: Joi.object().keys({
+    register: Joi.object().keys({
         password: Joi.string().max(20).required(),
         email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')).required(),
         name: Joi.string().required(),
-        date_created: Joi.date()
     })
 };
 
-exports.signup = async (req, res, next) => {
+exports.register = async (req, res, next) => {
     const body = req.body;
     try {
         //Todo: validate the body
@@ -37,7 +36,7 @@ exports.signup = async (req, res, next) => {
         //* generate token
         
         //* response to the client
-        return res.status(201).send("succed signup");
+        return res.status(201).send("succed register");
     } catch (error) {
         next(error);
     }

@@ -11,13 +11,15 @@ const { Trip } = require("../models/Trip.model");
 
 exports.getTripByTripId = async (req, res, next) => {
     try {
+        console.log("55555555555555555555555");
         const { id } = req.params;
         console.log(id);
-        const trip = await Trip.findOne({ id }).select("-__v");
+        const trip = await Trip.findOne({ _id : id}).select("-__v");
+        console.log(trip.tripName);
         res.send(trip);
     } catch (error) {
         console.log(error);
-        res.sendStatus(400);
+        res.sendStatus(400);    
     }
 }
 
@@ -26,9 +28,8 @@ exports.getTripByTripId = async (req, res, next) => {
 
 exports.getTripsByGuideId = async (req, res, next) => {
     try {
-        const { guideId } = req.params;
-        console.log(guideId);
-        const trip = await Trip.find({ guideId: req.params.id }, req.body).select("-__v");
+        const  guideId = res.locals.userId;
+        const trip = await Trip.find({ guideId }).select("-__v");
         res.send(trip);
     } catch (error) {
         console.log(error);
@@ -111,3 +112,20 @@ exports.editTrip = async (req, res, next) => {
         res.sendStatus(400).send(error);
     }
 };
+
+
+exports.addNewTrip = async (req, res, next) => {
+    const body = req.body;
+    const userId = res.locals.userId;
+    try {
+        const newTrip = new Trip(body);
+        newTrip.guideId = userId;
+        newTrip.id = newTrip._id;
+        await newTrip.save();
+        res.status(201).send(newTrip);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(400);
+    }
+};
+

@@ -1,4 +1,3 @@
-
 const { decodeToken } = require("../utils/jwt");
 
 exports.auth = (role) => {
