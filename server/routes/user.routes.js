@@ -1,6 +1,7 @@
 const express = require("express");
 const Joi = require("joi");
 const { register, login, updateUser, deleteUser } = require("../controllers/user.controller");
+const { auth } = require("../middlewares/auth");
 
 const router = express.Router();
 const userJoiSchema = {
@@ -38,7 +39,7 @@ router.post("/register", (req, res, next) => {
 }, register);
 
 router.post("/login", login);
-router.delete("/delete/:userId", deleteUser);
-router.put("/update/:userId", updateUser);
+router.delete("/delete/:userId", auth, deleteUser);
+router.patch("/update/:userId", auth, updateUser);
 
 module.exports = router;
