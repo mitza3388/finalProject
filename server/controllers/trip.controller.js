@@ -11,7 +11,6 @@ const { Trip } = require("../models/Trip.model");
 
 exports.getTripByTripId = async (req, res, next) => {
     try {
-        console.log("55555555555555555555555");
         const { id } = req.params;
         console.log(id);
         const trip = await Trip.findOne({ _id : id}).select("-__v");
