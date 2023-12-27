@@ -1,0 +1,74 @@
+.home {
+  padding-top: 20px;
+  text-align: center;
+  font-family: 'Comfortaa', sans-serif;
+}
+h1{
+  font-weight: bold;
+  color: #113b65;
+}
+
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  /* margin-bottom: 50px; */
+}
+
+.box {
+  width: 250px;
+  height: 420px;
+  padding: 15px;
+  margin: 50px;
+  border: 1px solid #3498db;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #ecf0f1;
+}
+
+#loginForm,
+#registerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#loginForm label,
+#registerForm label {
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+#loginForm input,
+#registerForm input {
+  padding: 10px;
+  margin-bottom: 16px;
+  width: 100%;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+#loginForm button,
+#registerForm button {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#loginForm button:hover,
+#registerForm button:hover {
+  background-color: #2980b9;
+}
+
+#loginForm,
+#registerForm {
+  text-align: center;
+}
+
+h2 {
+  color: #3498db;
+}
