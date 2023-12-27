@@ -1,0 +1,101 @@
+body {
+    font-family: 'Comfortaa', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.profile-container header {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.profile-container img {
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-container .name h1 {
+    color: orange;
+    margin: 0;
+}
+
+.experience-container,
+.education-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.experience h2,
+.education h2 {
+    color: #3c579c;
+}
+
+header {
+  margin-bottom: 10px;
+}
+
+header h3 {
+  margin: 0;
+  color: #2f2742;
+}
+b{
+    font-weight: bold;
+}
+
+button {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    background-color: orange;
+    color: #543b3b;
+    border: black;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: darkorange;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: darkorange;
+}
+
+.list{
+    text-align: start;
+}
+
+.resume {
+    background-color: #9c9898;
+    padding: 10px;
+    border-radius: 20px;
+    width: 30%;
+    height: 535px;
+    margin-bottom: 20px;
+}
+
+
+.resume-box{
+    padding: 20px;
+    text-align: start;
+    width: 100%;
+}
