@@ -1,6 +1,6 @@
 const express = require("express");
 const Joi = require("joi");
-const { register, login } = require("../controllers/user.controller");
+const { register, login, updateUser, deleteUser } = require("../controllers/user.controller");
 
 const router = express.Router();
 const userJoiSchema = {
@@ -12,7 +12,17 @@ const userJoiSchema = {
         password: Joi.string().max(20).required(),
         email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')).required(),
         name: Joi.string().required(),
-    })
+    }),
+    deleteUser: Joi.object().keys({
+        id: Joi.string().required(),
+    }),
+
+    updateUser: Joi.object().keys({
+        userId: Joi.string().required(),
+        // Add other fields that can be updated
+        // Example: name: Joi.string(),
+        //         email: Joi.string().email({ tlds: { allow: ['com'] } }),
+    }),
 };
 
 router.post("/register", (req, res, next) => {
@@ -28,7 +38,7 @@ router.post("/register", (req, res, next) => {
 }, register);
 
 router.post("/login", login);
-// router.delete("/delete/:userId", deleteUser);
-// router.put("/update/:userId", validateUser, updateUser);
+router.delete("/delete/:userId", deleteUser);
+router.put("/update/:userId", updateUser);
 
 module.exports = router;
