@@ -42,7 +42,7 @@ exports.getParticipantsByTripId = async (req, res, next) => {
 
   try {
     // Find the trip by ID
-    const trip = await Trip.findOne({ tripId });
+    const trip = await Trip.findOne({ _id: tripId });
 
     if (!trip) {
       return res.status(404).json({ message: 'Trip not found' });
@@ -63,7 +63,7 @@ exports.getRouteByTripId = async (req, res, next) => {
   
     try {
       // Find the trip by ID
-      const trip = await Trip.findOne({ tripId });
+      const trip = await Trip.findOne({_id: tripId });
   
       if (!trip) {
         return res.status(404).json({ message: 'Trip not found' });
@@ -86,7 +86,7 @@ exports.getRouteByTripId = async (req, res, next) => {
 
   try {
     // Find the trip by ID
-    const trip = await Trip.findOne({ tripId });
+    const trip = await Trip.findOne({ _id: tripId });
 
     if (!trip) {
       return res.status(404).json({ message: 'Trip not found' });
@@ -105,7 +105,7 @@ exports.getRouteByTripId = async (req, res, next) => {
 
 exports.editTrip = async (req, res, next) => {
     try {
-        const trip = await Trip.updateOne({ _id: req.params.editId }, req.body);
+        const trip = await Trip.updateOne({ _id: req.params.id }, req.body);
         res.json(trip);
     } catch (error) {
         console.log(error);
@@ -135,7 +135,7 @@ exports.getEquipmentListByTripId = async (req, res, next) => {
   
     try {
       // Find the trip by ID
-      const trip = await Trip.findOne({ tripId });
+      const trip = await Trip.findOne({ _id: tripId });
   
       if (!trip) {
         return res.status(404).json({ message: 'Trip not found' });
