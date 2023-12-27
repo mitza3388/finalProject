@@ -129,3 +129,25 @@ exports.addNewTrip = async (req, res, next) => {
     }
 };
 
+
+exports.getEquipmentListByTripId = async (req, res, next) => {
+    const tripId = req.params.id;
+  
+    try {
+      // Find the trip by ID
+      const trip = await Trip.findOne({ tripId });
+  
+      if (!trip) {
+        return res.status(404).json({ message: 'Trip not found' });
+      }
+  
+      // Extract equipment list from the equipmentList array
+      const equipmentList = trip.equipmentList;
+  
+      res.status(200).json({ equipmentList });
+    } catch (error) {
+      console.error('Error fetching equipment list:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+  
