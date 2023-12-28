@@ -39,7 +39,7 @@ router.post("/register", (req, res, next) => {
 }, register);
 
 router.post("/login", login);
-router.delete("/delete/:userId", auth, deleteUser);
-router.patch("/update/:userId", auth, updateUser);
+router.delete("/delete/:userId", auth(), deleteUser);
+router.patch("/update/:userId", auth(), updateUser);
 
 module.exports = router;
