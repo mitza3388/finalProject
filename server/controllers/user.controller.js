@@ -117,6 +117,27 @@ exports.deleteUser = async (req, res) => {
       return res.status(500).json({ message: 'Error updating user', error: error.message });
     }
   };
+  exports.getMyTrips = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        // מציאת המשתמש לפי המזהה שנשלח בבקשה
+        const user = await User.findById(userId);
+        
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+    
+        // מציאת רשימת הטיולים של המשתמש מתוך myTrips במודל המשתמש
+        const userTrips = await Trip.find({ tripId: { $in: user.myTrips.map(trip => trip.tripId) } });
+        
+        return res.status(200).json({ userTrips });
+      } catch (error) {
+        return res.status(500).json({ message: 'Error fetching user trips', error: error.message });
+      }
+
+  };
+
+
 
 
 
