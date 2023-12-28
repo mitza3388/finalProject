@@ -1,5 +1,8 @@
 import './App.css'
 import MyTrips from './components/myTrips/MyTrips';
+import TravelerChips from './components/travelerChips/TravelerChips';
+import TravelersSelectList from './components/travelersSelectList/TravelersSelectList';
+import WaypointsAccordion from './components/waypointsAccordion/WaypointsAccordion';
 // import { Provider } from './context/resumeContext'
 // import Navbar from './components/navbar'
 // import AppRoutes from './components/navbar/AppRoutes'
@@ -21,17 +24,8 @@ function App() {
   
 
 
-  const trips = [
-    { tripId: 1, tripName: 'Trip 1', tripDate: '2023-01-01' },
-    { tripId: 2, tripName: 'Trip 2', tripDate: '2023-02-01' },
-    // Add more trips as needed
-  ];
-
   return (
-    <div>
-      {/* Other components or content */}
-      <MyTrips trips={trips} />
-    </div>
+  <></>
   );
 }
 
