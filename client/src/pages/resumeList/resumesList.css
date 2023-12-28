@@ -1,0 +1,11 @@
+/* Assuming a container for your boxes */
+.resume-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+h2{
+  margin: 20px;
+}

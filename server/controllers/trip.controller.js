@@ -11,7 +11,6 @@ const { Trip } = require("../models/Trip.model");
 
 exports.getTripByTripId = async (req, res, next) => {
     try {
-        console.log("55555555555555555555555");
         const { id } = req.params;
         console.log(id);
         const trip = await Trip.findOne({ _id : id}).select("-__v");
@@ -42,7 +41,7 @@ exports.getParticipantsByTripId = async (req, res, next) => {
 
   try {
     // Find the trip by ID
-    const trip = await Trip.findOne({ tripId });
+    const trip = await Trip.findOne({ _id: tripId });
 
     if (!trip) {
       return res.status(404).json({ message: 'Trip not found' });
@@ -63,7 +62,7 @@ exports.getRouteByTripId = async (req, res, next) => {
   
     try {
       // Find the trip by ID
-      const trip = await Trip.findOne({ tripId });
+      const trip = await Trip.findOne({_id: tripId });
   
       if (!trip) {
         return res.status(404).json({ message: 'Trip not found' });
@@ -86,7 +85,7 @@ exports.getRouteByTripId = async (req, res, next) => {
 
   try {
     // Find the trip by ID
-    const trip = await Trip.findOne({ tripId });
+    const trip = await Trip.findOne({ _id: tripId });
 
     if (!trip) {
       return res.status(404).json({ message: 'Trip not found' });
@@ -105,7 +104,7 @@ exports.getRouteByTripId = async (req, res, next) => {
 
 exports.editTrip = async (req, res, next) => {
     try {
-        const trip = await Trip.updateOne({ _id: req.params.editId }, req.body);
+        const trip = await Trip.updateOne({ _id: req.params.id }, req.body);
         res.json(trip);
     } catch (error) {
         console.log(error);
@@ -129,3 +128,25 @@ exports.addNewTrip = async (req, res, next) => {
     }
 };
 
+
+exports.getEquipmentListByTripId = async (req, res, next) => {
+    const tripId = req.params.id;
+  
+    try {
+      // Find the trip by ID
+      const trip = await Trip.findOne({ _id: tripId });
+  
+      if (!trip) {
+        return res.status(404).json({ message: 'Trip not found' });
+      }
+  
+      // Extract equipment list from the equipmentList array
+      const equipmentList = trip.equipmentList;
+  
+      res.status(200).json({ equipmentList });
+    } catch (error) {
+      console.error('Error fetching equipment list:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+  
