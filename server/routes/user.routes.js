@@ -17,12 +17,11 @@ const userJoiSchema = {
     deleteUser: Joi.object().keys({
         id: Joi.string().required(),
     }),
-
     updateUser: Joi.object().keys({
         userId: Joi.string().required(),
-        // Add other fields that can be updated
-        // Example: name: Joi.string(),
-        //         email: Joi.string().email({ tlds: { allow: ['com'] } }),
+    }),
+    getMyTrips:Joi.object().keys({
+        userId: Joi.string().required(),
     }),
 };
 
@@ -41,5 +40,6 @@ router.post("/register", (req, res, next) => {
 router.post("/login", login);
 router.delete("/delete/:userId", auth(), deleteUser);
 router.patch("/update/:userId", auth(), updateUser);
+router.get("/getMyTrips/:userId", auth(), getMyTrips);
 
 module.exports = router;
