@@ -10,7 +10,8 @@ const TravelersSelectList = ({travelers}) => {
       id="travelersSelectList"
       options={travelers}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="travelers" />}
+      renderInput={(params) => <TextField {...params}/>}
+      //renderInput={(params) => <TextField {...params} label="travelers" />}
     />
   );
 }

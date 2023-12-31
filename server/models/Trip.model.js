@@ -16,7 +16,7 @@ const tripSchema = new mongoose.Schema({
   },
   travelersList: [
     {
-      userId: Number,
+      userId: String,
       username: String
     }
   ],
