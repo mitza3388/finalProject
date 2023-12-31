@@ -7,7 +7,7 @@ import Register from '../../pages/Register'
 import Form from '../form/Form'
 // import ResumesList from '../../pages/resumeList/ResumesList'
 
-// export default function AppRoutes() {
+export default function AppRoutes() {
     
   return (
     <Routes>
