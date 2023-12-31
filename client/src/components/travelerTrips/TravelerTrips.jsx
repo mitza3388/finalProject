@@ -30,4 +30,5 @@ const TravelerTrips=() =>{
   
     return <div><MyTrips trips={data}></MyTrips></div>;
   };
+  export default TravelerTrips;
 
