@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
+  
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [formData, setFormData] = useState({
