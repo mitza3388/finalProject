@@ -148,7 +148,28 @@ exports.deleteUser = async (req, res) => {
     }
   };
   
-  
+  exports.getMyTrips = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const user = await User.findById(userId).populate('myTrips'); // השלמת פרטי הנסיעות
+
+        if (!user) {
+            return res.status(404).json({ message: 'משתמש לא נמצא' });
+        }
+
+        const userTrips = user.myTrips || [];
+
+        if (userTrips.length === 0) {
+            return res.status(200).json({ userTrips: [] });
+        }
+
+        return res.status(200).json({ userTrips });
+    } catch (error) {
+        console.error('שגיאה באחזור נסיעות המשתמש:', error);
+        return res.status(500).json({ message: 'שגיאה באחזור נסיעות המשתמש', error: error.message });
+    }
+};
+
 
 
 
