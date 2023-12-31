@@ -1,5 +1,7 @@
 import React from 'react'
 import MyTrips from '../myTrips/MyTrips';
+import fetchData from '../../utils/fetchData';
+import { useState,useEffect } from 'react';
 
 const TravelerTrips=() =>{
     const [data, setData] = useState(null);
