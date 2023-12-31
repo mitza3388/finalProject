@@ -6,8 +6,8 @@ export default function Navbar() {
     <div>
       <Link to={"/"}> Home </Link>
       <Link to={"/register"}> Register </Link>
-      <Link to={"/login"}> Login </Link>
-      <Link to={"/form"}> Fill Form </Link>
+      <Form to={"/login"}> Login </Form>
+      {/* <Link to={"/form"}> Fill Form </Link> */}
       </div>
   )
 }

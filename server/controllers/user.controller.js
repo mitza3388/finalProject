@@ -13,17 +13,7 @@ const userJoiSchema = {
         password: Joi.string().max(20).required(),
         email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')).required(),
         name: Joi.string().required(),
-    }),
-    deleteUser: Joi.object().keys({
-        id: Joi.string().required(),
-    }),
-
-    updateUser: Joi.object().keys({
-        userId: Joi.string().required(),
-        // Add other fields that can be updated
-        // Example: name: Joi.string(),
-        //         email: Joi.string().email({ tlds: { allow: ['com'] } }),
-    }),
+    })
 };
 
 exports.register = async (req, res, next) => {
@@ -31,7 +21,8 @@ exports.register = async (req, res, next) => {
     try {
         //Todo: validate the body
         // check if exists
-        if (await checkIfUserExists(body.email)) {
+        const user = await checkIfUserExists(body.email);
+        if (user) {
             throw new Error("Already in the sysytem");
         };
 
@@ -45,7 +36,7 @@ exports.register = async (req, res, next) => {
         await newUser.save();
 
         //* generate token
-
+        
         //* response to the client
         return res.status(201).send("succed register");
     } catch (error) {
@@ -61,8 +52,8 @@ const checkIfUserExists = async (email) => {
 
 exports.login = async (req, res, next) => {
     const body = req.body;
+    console.log(req.body);
     try {
-        //Todo: validate body
         const validate = userJoiSchema.login.validate(body);
         if (validate.error) {
             throw Error(validate.error);
@@ -74,13 +65,16 @@ exports.login = async (req, res, next) => {
         if (!user || ! await bcrypt.compare(body.password, user.password)) {
             throw new Error('Password or email not valid');
         }
-        //* generate jwt token
-        const token = generateToken(user);
-        return res.send(token);
-        // send the user object to the client
+
+        else {
+            //* generate jwt token
+            const token = generateToken(user);
+            res.send(token);
+        }
     } catch (error) {
         next(error);
     }
+
 };
 
 exports.deleteUser = async (req, res) => {
