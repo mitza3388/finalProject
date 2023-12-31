@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const Joi = require("joi");
 const { User } = require("../models/User.model");
 const { generateToken } = require("../utils/jwt");
+const { Trip } = require("../controllers/trip.controller")
 
 const userJoiSchema = {
     login: Joi.object().keys({
@@ -117,26 +118,33 @@ exports.deleteUser = async (req, res) => {
       return res.status(500).json({ message: 'Error updating user', error: error.message });
     }
   };
+  
   exports.getMyTrips = async (req, res) => {
     const { userId } = req.params;
     try {
-        // מציאת המשתמש לפי המזהה שנשלח בבקשה
-        const user = await User.findById(userId);
-        
-        if (!user) {
-          return res.status(404).json({ message: 'User not found' });
-        }
-    
-        // מציאת רשימת הטיולים של המשתמש מתוך myTrips במודל המשתמש
-        const userTrips = await Trip.find({ tripId: { $in: user.myTrips.map(trip => trip.tripId) } });
-        
-        return res.status(200).json({ userTrips });
-      } catch (error) {
-        return res.status(500).json({ message: 'Error fetching user trips', error: error.message });
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ message: 'משתמש לא נמצא' });
       }
-
+  
+      const userTrips = user.myTrips || []; // ברירת מחדל למערך ריק אם myTrips הוא undefined
+      const tripIds = userTrips.map(trip => trip.tripId);
+  
+      if (tripIds.length === 0) {
+        return res.status(200).json({ userTrips: [] }); // אין נסיעות, יש להחזיר מערך ריק או להוסיף הודעה מתאימה
+      }
+  
+      const trips = await Trip.find({ _id: { $in: tripIds } });
+  
+      return res.status(200).json({ userTrips: trips });
+    } catch (error) {
+      console.error('שגיאה באחזור נסיעות המשתמש:', error);
+      return res.status(500).json({ message: 'שגיאה באחזור נסיעות המשתמש', error: error.message });
+    }
   };
-
+  
+  
 
 
 
