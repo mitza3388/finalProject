@@ -40,6 +40,6 @@ router.post("/register", (req, res, next) => {
 router.post("/login", login);
 router.delete("/delete/:userId", auth(), deleteUser);
 router.patch("/update/:userId", auth(), updateUser);
-router.get("/getMyTrips/:userId", auth(), getMyTrips);
+router.get("/getMyTrips", auth(), getMyTrips);
 
 module.exports = router;
