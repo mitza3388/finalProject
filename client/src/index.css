@@ -11,7 +11,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
+/* .home{
+  margin-left: 200px;
+} */
 
 a {
   font-weight: 500;
@@ -29,6 +33,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   direction: rtl;
+  background: url("../10862.jpg") center/cover no-repeat;
+  background-size:2050px auto;
+  /* background-position: 1px center; */
+
 }
 
 h1 {

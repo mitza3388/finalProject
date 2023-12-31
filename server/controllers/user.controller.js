@@ -149,7 +149,7 @@ exports.deleteUser = async (req, res) => {
   };
   
   exports.getMyTrips = async (req, res) => {
-    const { userId } = req.params;
+    const  {userId} = res.locals;
     try {
         const user = await User.findById(userId).populate('myTrips'); // השלמת פרטי הנסיעות
 
