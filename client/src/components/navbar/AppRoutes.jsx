@@ -7,7 +7,9 @@ import Register from '../../pages/Register'
 import Form from '../form/Form'
 import EntryAs from '../entryAs/EntryAs'
 import GuideEntryPage from '../guideEntryPage/GuideEntryPage'
+import TravelerTrips from '../travelerTrips/TravelerTrips'
 // import ResumesList from '../../pages/resumeList/ResumesList'
+
 
 export default function AppRoutes() {
     
@@ -17,7 +19,7 @@ export default function AppRoutes() {
       <Route path='/register' element={<EntryAs/>}/>
       <Route path='/login' element={<EntryAs/>}/>
       <Route path='/guide' element={<GuideEntryPage/>}/>
-      <Route path='/traveler' element={<Form/>}/>
+      <Route path='/traveler' element={<TravelerTrips/>}/>
       {/* <Route path='/form' element={<Form/>}/>
       <Route path='/display' element={<Resume />}/>
       <Route path='/ResumesList' element={<ResumesList />}/> */}
