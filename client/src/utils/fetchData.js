@@ -64,8 +64,9 @@ const fetchData = async (url, method = 'GET', body = null) => {
     console.log(`${basicURL}${url}`);
 
     const response = await fetch(`${basicURL}${url}`, options);
-    console.log("response",response);
-    return response;
+     const data = await response.json();
+    console.log("response in fetch data", data);
+    return data;
     // if (response.ok) {
     //   if (method == 'GET') {
     //     const data = await response.json();

@@ -28,8 +28,8 @@ exports.getTripByTripId = async (req, res, next) => {
 exports.getTripsByGuideId = async (req, res, next) => {
     try {
         const  guideId = res.locals.userId;
-        const trip = await Trip.find({ guideId }).select("-__v");
-        res.send(trip);
+        const trips = await Trip.find({ guideId }).select("-__v");
+        res.send(trips);
     } catch (error) {
         console.log(error);
         res.sendStatus(400);
