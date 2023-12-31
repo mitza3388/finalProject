@@ -17,9 +17,9 @@ app.get("/test", (req, res) => {
     res.json({ msg: "works properly" });
 });
 
-app.get("*",()=>{
+// app.get("*",()=>{
 
-});
+// });
 /* Global error handler */
 app.use((error, req, res, next) => {
     console.log(error);

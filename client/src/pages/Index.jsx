@@ -13,7 +13,6 @@ export default function Home() {
         <Login />
         <Register />
       </div>
-      <Link to={"/ResumesList"}> Click Here If Already Loged In </Link>
       </div>
   )
 }

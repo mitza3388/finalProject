@@ -1,19 +1,19 @@
 import './App.css'
-import { Provider } from './context/resumeContext'
 import Navbar from './components/navbar'
 import AppRoutes from './components/navbar/AppRoutes'
 import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './context/authContext'
 
 function App() {
 
   return (
     <>
-      <Provider>
+      <AuthProvider>
         <BrowserRouter>
           {/* <Navbar /> */}
           <AppRoutes />
         </BrowserRouter>
-      </Provider>
+      </AuthProvider>
     </>
 
   )
