@@ -1,6 +1,6 @@
 const express = require("express");
 const Joi = require("joi");
-const { register, login, updateUser, deleteUser } = require("../controllers/user.controller");
+const { register, login, updateUser, deleteUser, getMyTrips } = require("../controllers/user.controller");
 const { auth } = require("../middlewares/auth");
 
 const router = express.Router();
