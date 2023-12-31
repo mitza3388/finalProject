@@ -12,7 +12,8 @@ const userJoiSchema = {
     register: Joi.object().keys({
         password: Joi.string().max(20).required(),
         email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')).required(),
-    }),
+        myTrips: Joi.array().items(Joi.string()), // לשנות למזהה ObjectId אם אתה שומר את מזהה הנסיעות כ ObjectId
+    }), 
     deleteUser: Joi.object().keys({
         id: Joi.string().required(),
     }),

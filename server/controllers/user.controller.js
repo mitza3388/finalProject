@@ -4,18 +4,6 @@ const { User } = require("../models/User.model");
 const { generateToken } = require("../utils/jwt");
 const { Trip } = require("../controllers/trip.controller")
 
-const userJoiSchema = {
-    login: Joi.object().keys({
-        password: Joi.string(),
-        email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')),
-    }),
-    register: Joi.object().keys({
-        password: Joi.string().max(20).required(),
-        email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')).required(),
-        name: Joi.string().required(),
-    })
-};
-
 exports.register = async (req, res, next) => {
     const body = req.body;
     try {
