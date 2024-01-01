@@ -44,7 +44,7 @@ const Register = () => {
       <h2>Register</h2>
       <form id="registerForm" onSubmit={handleSubmit}>
         <label htmlFor="registerEmail">
-          Email:
+          Email
           <input id="registerEmail"
             type="email"
             name="email"
@@ -54,7 +54,7 @@ const Register = () => {
         </label>
         <br />
         <label htmlFor="registerPassword">
-          Password:
+          Password
           <input id="registerPassword"
             type="password"
             name="password"

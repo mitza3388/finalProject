@@ -7,7 +7,7 @@ import Register from '../../pages/Register'
 import Form from '../form/Form'
 import EntryAs from '../entryAs/EntryAs'
 import GuideEntryPage from '../guideEntryPage/GuideEntryPage'
-import TravelerTrips from '../travelerTrips/TravelerTrips'
+import TravelerTrips from '../Traveler/Traveler'
 // import ResumesList from '../../pages/resumeList/ResumesList'
 
 

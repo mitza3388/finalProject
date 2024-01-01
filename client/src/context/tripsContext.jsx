@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react';
 const TripContext = createContext();
 
 const TripProvider = ({ children }) => {
-  const [trip, setTrip] = useState(/* Initial trip object or value */);
+  const [trip, setTrip] = useState();
 
   const updateTrip = (newTrip) => {
     setTrip(newTrip);

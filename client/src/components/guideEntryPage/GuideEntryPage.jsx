@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import fetchData from '../../utils/fetchData';
 import MyTrips from '../myTrips/MyTrips';
-import CreateNewTrip from '../createNewTrip/CreateNewTrip';
+import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
 
 const GuideEntryPage = () => {
     const [data, setData] = useState(null);
