@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import fetchData from '../../utils/fetchData';
 import MyTrips from '../myTrips/MyTrips';
 import CreateNewTrip from '../createNewTrip/CreateNewTrip';
+import './guideEntryPage.css'
 
 const GuideEntryPage = () => {
     const [data, setData] = useState(null);
@@ -27,7 +28,9 @@ const GuideEntryPage = () => {
     }
 
     if (!data) {
-        return <div>Loading...</div>;
+        // return <div>Loading...</div>;
+        <div class="loader"></div>
+        
     }
 
     return (
