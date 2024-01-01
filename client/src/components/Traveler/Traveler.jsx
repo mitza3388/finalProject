@@ -3,7 +3,7 @@ import MyTrips from '../myTrips/MyTrips';
 import fetchData from '../../utils/fetchData';
 import { useState,useEffect } from 'react';
 
-const TravelerTrips=() =>{
+const Traveler=() =>{
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
   
@@ -38,5 +38,5 @@ const TravelerTrips=() =>{
     console.log(data);
     return <div><MyTrips trips={data}></MyTrips></div>;
   };
-  export default TravelerTrips;
+  export default Traveler;
 
