@@ -6,7 +6,6 @@ import MyTrips from '../myTrips/MyTrips';
 import './guideEntryPage.css'
 
 import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
-import CreateLandmark from '../createLandmark/CreateLandmark';
 
 
 const GuideEntryPage = () => {
@@ -44,10 +43,6 @@ const GuideEntryPage = () => {
             <MyTrips trips={data}></MyTrips>
             {/* <button onClick={() => console.log("לשים כאן פונקציה")}>create new trip</button> */}
             <button onClick={() => <CreateNewTrip/>}>create new trip</button>
-
-
-
-            <button onClick={() => <CreateLandmark/>}>-----test---(landMark)</button>
         </>);
 };
 
