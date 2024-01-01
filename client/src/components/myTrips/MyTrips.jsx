@@ -10,7 +10,7 @@ const MyTrips = ({ trips }) => {
             <TripLine trip={trip}></TripLine>
         ))}
       </ul>
-      <button onClick={() => console.log("לשים כאן פונקציה")}>צור טיול חדש</button>
+      {/* <button onClick={() => console.log("לשים כאן פונקציה")}>צור טיול חדש</button> */}
     </div>
   );
 };
