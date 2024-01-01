@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <div className="home">
-      <h1>Welcome Trip planner</h1>
+      <h1>Welcome to Trip planner</h1>
     <div className="container">
         <Login />
         <Register />

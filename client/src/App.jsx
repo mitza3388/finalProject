@@ -6,7 +6,9 @@ import WaypointsAccordion from './components/waypointsAccordion/WaypointsAccordi
 import Navbar from './components/navbar'
 import AppRoutes from './components/navbar/AppRoutes'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthProvider, TripProvider } from './context/authContext'
+import { AuthProvider } from './context/authContext'
+import {TripProvider} from './context/tripsContext'
+
 
 function App() {
 

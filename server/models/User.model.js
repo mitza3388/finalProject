@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const userSchema = new Schema({
     id: {
@@ -18,10 +18,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    myTrips:[{tripId: {
-        type: String,
-        required: false
-      }}]
+    myTrips: [{
+        type: Types.ObjectId,
+        ref: 'Trip'
+    }]
 });
 
 // Do thing to the schema before saving

@@ -12,7 +12,8 @@ const userJoiSchema = {
     register: Joi.object().keys({
         password: Joi.string().max(20).required(),
         email: Joi.string().email({ tlds: { allow: ['com'] } }).error(() => Error('Email is not valid')).required(),
-    }),
+        myTrips: Joi.array().items(Joi.string()), // לשנות למזהה ObjectId אם אתה שומר את מזהה הנסיעות כ ObjectId
+    }), 
     deleteUser: Joi.object().keys({
         id: Joi.string().required(),
     }),
@@ -39,6 +40,6 @@ router.post("/register", (req, res, next) => {
 router.post("/login", login);
 router.delete("/delete/:userId", auth(), deleteUser);
 router.patch("/update/:userId", auth(), updateUser);
-router.get("/getMyTrips/:userId", auth(), getMyTrips);
+router.get("/getMyTrips", auth(), getMyTrips);
 
 module.exports = router;

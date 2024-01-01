@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import fetchData from '../../utils/fetchData';
 import MyTrips from '../myTrips/MyTrips';
-import CreateNewTrip from '../createNewTrip/CreateNewTrip';
+
+
 import './guideEntryPage.css'
+
+import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
+import CreateLandmark from '../createLandmark/CreateLandmark';
+
 
 const GuideEntryPage = () => {
     const [data, setData] = useState(null);
@@ -28,9 +33,10 @@ const GuideEntryPage = () => {
     }
 
     if (!data) {
-        // return <div>Loading...</div>;
-        <div class="loader"></div>
-        
+        return (
+        //<div>Loading...</div>;
+        <div className="loader"></div>
+        )
     }
 
     return (
@@ -38,6 +44,10 @@ const GuideEntryPage = () => {
             <MyTrips trips={data}></MyTrips>
             {/* <button onClick={() => console.log("לשים כאן פונקציה")}>create new trip</button> */}
             <button onClick={() => <CreateNewTrip/>}>create new trip</button>
+
+
+
+            <button onClick={() => <CreateLandmark/>}>-----test---(landMark)</button>
         </>);
 };
 
