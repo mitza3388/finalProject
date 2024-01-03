@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import fetchData from '../../utils/fetchData';
 import MyTrips from '../myTrips/MyTrips';
-
-
-import './guideEntryPage.css'
-
 import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
 
-
 const GuideEntryPage = () => {
+    const navigate = useNavigate();
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
 
@@ -42,7 +38,7 @@ const GuideEntryPage = () => {
         <>
             <MyTrips trips={data}></MyTrips>
             {/* <button onClick={() => console.log("לשים כאן פונקציה")}>create new trip</button> */}
-            <button onClick={() => <CreateNewTrip/>}>create new trip</button>
+            <button onClick={() => navigate('/createNewTrip')}>create new trip</button>
         </>);
 };
 

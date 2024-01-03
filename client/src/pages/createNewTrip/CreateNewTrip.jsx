@@ -1,6 +1,34 @@
 import React from 'react'
 
+
+
+
+
+
+
+
 const CreateNewTrip = () => {
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetchData('trips/addNewTrip', 'POST', formData);
+      if (!response.ok) {
+        console.log('Bad Request');
+        setError(true);
+      }
+      else {
+        navigate('/register');
+      }
+    }
+
+    catch (error) {
+      console.error('Error:', error.message);
+    }
+  };
+
+
+
   return (
     <div className="box">
       <h2>Create new Trip</h2>
@@ -27,7 +55,7 @@ const CreateNewTrip = () => {
         <br />
         <button type="submit">Register</button>
       </form>
-      {error && <h5 style={{ color: 'red' }}>user is already exist</h5>}
+      {error && <h5 style={{ color: 'red' }}>user is already exist</h5>} 
     </div>
   );
 }
