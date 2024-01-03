@@ -2,27 +2,25 @@
 //import "./locationSelector.css"
 
 
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import { Icon, divIcon } from 'leaflet';
 // import { MarkerClusterGroup } from 'react-leaflet-cluster'; // Corrected import statement
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 
-
-
-
 const LocationSelector = () => {
   const DEFAULT_LANGITUDE = 34.855499
   const DEFAULT_LATITUDE = 32.109333
 
-  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
+  // const [selectedPlace, setSelectedPlace] = useState(null);
 
-  const handleMapClick = (e) => {
-    const { lat, lng } = e.latlng;
-    setSelectedPlace({ lat, lng });
-  };
+  // const handleMapClick = (e) => {
+  //   const { lat, lng } = e.latlng;
+  //   setSelectedPlace({ lat, lng });
+  // };
 
 
   const markers = [
@@ -45,13 +43,55 @@ const LocationSelector = () => {
     });
   }
 
+  useEffect(() => {
+    // Check if the geolocation API is available
+    if ('geolocation' in navigator) {
+      // Get user's current location
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+        },
+        (error) => {
+          console.error('Error getting user location:', error.message);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by your browser');
+    }
+  }, [DEFAULT_LATITUDE, DEFAULT_LANGITUDE]);
+
+  const [clickedLocation, setClickedLocation] = useState(null);
+
+  const handleMapClick = async(event) => {
+    const { lat, lng } = event.latlng;
+
+    const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    const streetName = data.address?.road || 'Street name not available';
+
+
+    setClickedLocation({ lat, lng, streetName });
+  };
+
+
+  const ClickHandler = ({ onMapClick }) => {
+    const map = useMapEvents({
+      click: onMapClick,
+    });
+
+    return null; // This component doesn't render anything, it just attaches the event handler
+  };
+
   return (
     <div style={{ width: "300px", height: "300px" }} >
       <MapContainer
         center={[DEFAULT_LATITUDE, DEFAULT_LANGITUDE]}
-        zoom={8}
+        zoom={12}
         style={{ height: '100%', width: '100%', overflow: "hidden" }}
-        onClick={handleMapClick}
+        // onClick={handleMapClick}
         scrollWheelZoom={true}
       >
         <TileLayer
@@ -59,9 +99,15 @@ const LocationSelector = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">trip planner</a> contributors'
         />
 
-        {selectedPlace && (
+        {/* {selectedPlace && (
           <Marker position={[selectedPlace.lat, selectedPlace.lng]}>
 
+          </Marker>
+        )} */}
+
+        {userLocation && (
+          <Marker position={[userLocation.lat, userLocation.lng]}>
+            <Popup>You are here!</Popup>
           </Marker>
         )}
 
@@ -76,14 +122,24 @@ const LocationSelector = () => {
           iconCreateFunction={createCustomClusterIcon}
         > */}
 
-          {markers.map(marker => (
-            <Marker position={marker.position} icon={customIcon}>
-              <Popup>{marker.popUp}</Popup>
-            </Marker>
+        {markers.map(marker => (
+          <Marker position={marker.position} icon={customIcon}>
+            <Popup>{marker.popUp}</Popup>
+          </Marker>
 
-          ))}
-          {/* </MarkerClusterGroup> */}
+        ))}
         {/* </MarkerClusterGroup> */}
+        {/* </MarkerClusterGroup> */}
+
+        <ClickHandler onMapClick={handleMapClick} />
+        {clickedLocation && (
+          <Marker position={[clickedLocation.lat, clickedLocation.lng]}>
+            <Popup>
+              <strong>Clicked Location:</strong> {clickedLocation.lat.toFixed(4)}, {clickedLocation.lng.toFixed(4)}
+              <strong>Location Name:</strong> {clickedLocation.streetName}
+            </Popup>
+          </Marker>
+        )}
 
       </MapContainer>
     </div>
@@ -95,79 +151,5 @@ export default LocationSelector;
 
 
 
-/*********************************** */
 
-
-
-// import React, { useState } from 'react';
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-// import L from 'leaflet';
-// import 'leaflet/dist/leaflet.css';
-// import 'leaflet.markercluster/dist/MarkerCluster.css';
-// import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
-// import 'leaflet.markercluster/dist/leaflet.markercluster';
-
-// const LocationSelector = () => {
-//   const DEFAULT_LANGITUDE = 34.855499;
-//   const DEFAULT_LATITUDE = 32.109333;
-
-//   const [selectedPlace, setSelectedPlace] = useState(null);
-
-//   const handleMapClick = (e) => {
-//     const { lat, lng } = e.latlng;
-//     setSelectedPlace({ lat, lng });
-//   };
-
-//   const markers = [
-//     {
-//       position: [DEFAULT_LATITUDE, DEFAULT_LANGITUDE],
-//       popUp: 'hiii',
-//     },
-//   ];
-
-//   const customIcon = new L.Icon({
-//     iconUrl: 'https://cdn-icons-png.flaticon.com/128/2776/2776000.png',
-//     iconSize: new L.Point(38, 38),
-//   });
-
-//   return (
-//     <div style={{ width: '300px', height: '300px' }}>
-//       <MapContainer
-//         center={[DEFAULT_LATITUDE, DEFAULT_LANGITUDE]}
-//         zoom={8}
-//         style={{ height: '100%', width: '100%', overflow: 'hidden' }}
-//         onClick={handleMapClick}
-//         scrollWheelZoom={true}
-//       >
-//         <TileLayer
-//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">trip planner</a> contributors'
-//         />
-
-//         {selectedPlace && (
-//           <Marker position={[selectedPlace.lat, selectedPlace.lng]}>
-//             {/* ... (unchanged code) */}
-//           </Marker>
-//         )}
-
-//         <L.MarkerClusterGroup>
-//           {markers.map((marker, index) => (
-//             <Marker
-//               key={index}
-//               position={marker.position}
-//               icon={customIcon}
-//             >
-//               <Popup>{marker.popUp}</Popup>
-//             </Marker>
-//           ))}
-//         </L.MarkerClusterGroup>
-//       </MapContainer>
-//     </div>
-//   );
-// };
-
-// export default LocationSelector;
-
-
-//import "./locationSelector.css"
 
