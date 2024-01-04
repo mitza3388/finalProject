@@ -1,24 +1,24 @@
 import React from 'react'
+import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const EntryAs = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleLogin = (role) => {
-        if (role === 'guide') {
-          navigate("/guide")
-        } else if (role === 'traveler') {
-            navigate("/traveler")
-        }
-      };
+  const handleLogin = (role) => {
+    if (role === 'guide') {
+      navigate("/guide")
+    } else if (role === 'traveler') {
+      navigate("/traveler")
+    }
+  };
 
   return (
-
-    <div>
-      <button onClick={() => handleLogin('guide')}>Log in as a Guide</button>
-      <button onClick={() => handleLogin('traveler')}>Log in as a Participant</button>
+    <div className='container d-flex align-items-center justify-content-space-between text-center'>
+      <Button className='m-3' onClick={() => handleLogin('guide')}>Log in as a Guide</Button>
+      <Button  className='m-3' onClick={() => handleLogin('traveler')}>Log in as a Participant</Button>
     </div>
-  )
+  );
 }
 
 

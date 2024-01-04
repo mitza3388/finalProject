@@ -7,7 +7,7 @@ const MyTrips = ({ trips }) => {
     <div>
       <h2>הטיולים שלי</h2>
       <ul>
-      {trips.map((trip, index) => (
+      {trips?.map((trip, index) => (
     <TripLine key={index} trip={trip}></TripLine>
 ))}
       </ul>
