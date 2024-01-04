@@ -1,3 +1,4 @@
+
 // import React from 'react'
 
 
@@ -34,4 +35,5 @@ const TripLine = ({ trip }) => {
 };
 
 export default TripLine;
+
 

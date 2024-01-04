@@ -28,7 +28,7 @@ exports.sendEmail = async (req, res) => {
 
     // Email options
     const mailOptions = {
-        from: 'jcxgjf',
+        from: 'My Trip Planner',
         to,
         subject,
         text,
