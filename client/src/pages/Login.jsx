@@ -54,7 +54,7 @@ const Login = () => {
   };
 
   return (
-    <div className="box">
+    <div className="box pt-5">
       <h2>Login</h2>
       <form id="loginForm">
         <label htmlFor="loginUsername">Email</label>
@@ -76,7 +76,7 @@ const Login = () => {
           required
         />
 
-        <button type="submit" onClick={handleSubmit}>
+        <button className='mt-5' type="submit" onClick={handleSubmit}>
           Login
         </button>
       </form>

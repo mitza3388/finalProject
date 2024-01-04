@@ -121,7 +121,7 @@ exports.addNewTrip = async (req, res, next) => {
         newTrip.guideId = userId;
         newTrip.id = newTrip._id;
         await newTrip.save();
-        res.status(201).send(newTrip);
+        res.send(newTrip);
     } catch (error) {
         console.log(error);
         res.sendStatus(400);
