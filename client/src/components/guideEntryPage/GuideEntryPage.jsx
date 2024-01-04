@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import fetchData from '../../utils/fetchData';
 import MyTrips from '../myTrips/MyTrips';
 import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
-
+import { useNavigate } from "react-router-dom";
+import './guideEntryPage.css'
+import LocationPicker from '../locationSelector/LocationSelector';
 const GuideEntryPage = () => {
     const navigate = useNavigate();
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-
     useEffect(() => {
         const fetchDataAsync = async () => {
             try {
@@ -36,9 +37,12 @@ const GuideEntryPage = () => {
 
     return (
         <>
-            <MyTrips trips={data}></MyTrips>
+            <MyTrips trips={data || []}></MyTrips>
             {/* <button onClick={() => console.log("לשים כאן פונקציה")}>create new trip</button> */}
             <button onClick={() => navigate('/createNewTrip')}>create new trip</button>
+            
+            <LocationPicker></LocationPicker>
+            <button onClick={() => navigate('/createLandmark')}>---test---(landMark)</button>
         </>);
 };
 

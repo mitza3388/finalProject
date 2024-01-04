@@ -8,6 +8,8 @@ import EntryAs from '../entryAs/EntryAs'
 import GuideEntryPage from '../guideEntryPage/GuideEntryPage'
 import Traveler from '../Traveler/Traveler'
 import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip'
+import CreateLandmark from '../createLandmark/CreateLandmark'
+import LocationSelector from '../locationSelector/LocationSelector'
 // import ResumesList from '../../pages/resumeList/ResumesList'
 
 
@@ -21,6 +23,8 @@ export default function AppRoutes() {
       <Route path='/guide' element={<GuideEntryPage/>}/>
       <Route path='/traveler' element={<Traveler/>}/>
       <Route path='/createNewTrip' element={<CreateNewTrip/>}/>
+      <Route path='/createLandmark' element={<CreateLandmark/>}/>
+      <Route path='/locationSelector' element={<LocationSelector/>}/>
       
       {/* <Route path='/form' element={<Form/>}/>
       <Route path='/display' element={<Resume />}/>
