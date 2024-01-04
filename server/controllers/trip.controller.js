@@ -129,6 +129,40 @@ exports.addNewTrip = async (req, res, next) => {
 };
 
 
+exports.addNewLandmark = async (req, res, next) => {
+  const tripId = req.params.id;
+  const body = req.body;
+  const userId = res.locals.userId;
+
+  try {
+    // Find the trip by ID
+    const trip = await Trip.findOne({ _id: tripId });
+
+    // Create a new landmark object from the request body
+    const newLandmark = {
+      location: body.location,
+      landmarkName: body.landmarkName,
+      description: body.description,
+      startTime: body.startTime,
+      length: body.length,
+      nextLandmarkId: body.nextLandmarkId
+    };
+
+    // Add the new landmark to the route array
+    trip.route.push(newLandmark);
+
+    // Save the updated trip to the database
+    await trip.save();
+
+    // Send the updated trip as a response
+    res.json(trip);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
+
+
 exports.getEquipmentListByTripId = async (req, res, next) => {
     const tripId = req.params.id;
   

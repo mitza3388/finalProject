@@ -4,6 +4,11 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
 const TravelerChips = ({ travelers }) => {
+  // בדיקה שלא ניסינו לעבור על מערך שאינו מוגדר
+  if (!travelers || travelers.length === 0) {
+    return <div>No travelers available</div>;
+  }
+
   return (
     <Stack direction="row" spacing={1}>
       {travelers.map((traveler, index) => (

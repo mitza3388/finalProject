@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import fetchData from '../../utils/fetchData';
 import MyTrips from '../myTrips/MyTrips';
+import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
 import { useNavigate } from "react-router-dom";
 import { TripProvider } from '../../context/tripsContext';
 
 // import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
 
+import './guideEntryPage.css'
 const GuideEntryPage = () => {
     const navigate = useNavigate();
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-
     useEffect(() => {
         const fetchDataAsync = async () => {
             try {
@@ -31,7 +32,10 @@ const GuideEntryPage = () => {
     }
 
     if (!data) {
-        return <div>Loading...</div>;
+        return (
+        //<div>Loading...</div>;
+        <div className="loader"></div>
+        )
     }
 
     return (
