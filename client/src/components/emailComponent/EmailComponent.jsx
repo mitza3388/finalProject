@@ -9,8 +9,6 @@ const EmailComponent = () => {
 
   const sendEmail = async () => {
     try {
-      console.log("hiiii");
-
       const response = await axios.post(`http://localhost:1200/api/v1/mail/send-email`, {
         to: email,
         subject,
@@ -28,7 +26,7 @@ const EmailComponent = () => {
       console.error('Error sending email:', error);
       alert('Error sending email. Please try again.');
     }
-  };
+};
 
   const generateTripLink = (tripId) => {
     // כתוב הלוגיקה המתאימה ליצירת הקישור
