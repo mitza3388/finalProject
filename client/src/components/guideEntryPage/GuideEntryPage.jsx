@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import fetchData from '../../utils/fetchData';
 import MyTrips from '../myTrips/MyTrips';
 import { useNavigate } from "react-router-dom";
+import { TripProvider } from '../../context/tripsContext';
 
 // import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
 
@@ -35,9 +36,11 @@ const GuideEntryPage = () => {
 
     return (
         <>
-            <MyTrips trips={data}></MyTrips>
-            {/* <button onClick={() => console.log("לשים כאן פונקציה")}>create new trip</button> */}
-            <button onClick={() => navigate('/createNewTrip')}>create new trip</button>
+            <TripProvider>
+                <MyTrips trips={data}></MyTrips>
+                {/* <button onClick={() => console.log("לשים כאן פונקציה")}>create new trip</button> */}
+                <button onClick={() => navigate('/createNewTrip')}>create new trip</button>
+            </TripProvider>
         </>);
 };
 

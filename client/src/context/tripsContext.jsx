@@ -1,9 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
 const TripContext = createContext();
 
 const TripProvider = ({ children }) => {
-  const [trip, setTrip] = useState();
+  const [trip, setTrip] = useState({ tripName: '', route: [] });
 
   const updateTrip = (newTrip) => {
     setTrip(newTrip);
@@ -16,12 +16,12 @@ const TripProvider = ({ children }) => {
   );
 };
 
-const useTrip = () => {
+const useTripContext = () => {
   const context = useContext(TripContext);
   if (!context) {
-    throw new Error('useTrip must be used within a TripProvider');
+    throw new Error('useTripContext must be used within a TripProvider');
   }
   return context;
 };
 
-export { TripProvider, useTrip };
+export { TripProvider, useTripContext };
