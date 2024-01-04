@@ -6,6 +6,8 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Comfortaa', sans-serif;
+
   
 }
 
@@ -13,7 +15,6 @@ body{
 .home {
   padding-top: 20px;
   text-align: center;
-  font-family: 'Comfortaa', sans-serif;
 }
 h1{
   font-weight: bold;
