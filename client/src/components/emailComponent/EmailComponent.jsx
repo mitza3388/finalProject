@@ -9,38 +9,42 @@ const EmailComponent = () => {
 
   const sendEmail = async () => {
     try {
-
       console.log("hiiii");
 
-      await axios.post(`http://localhost:1200/api/v1/mail/send-email`, {
+      const response = await axios.post(`http://localhost:1200/api/v1/mail/send-email`, {
         to: email,
         subject,
         text: message,
       });
-      alert('Email sent successfully!');
-      const tripLink = generateTripLink();
-      alert(`Email sent successfully! ${tripLink}`);
+
+      if (response.status === 200) {
+        // אם המייל נשלח בהצלחה, יצור קישור לטיול
+        const tripLink = generateTripLink(response.data.tripId);
+        alert(`Email sent successfully! ${tripLink}`);
+      } else {
+        alert('Error sending email. Please try again.');
+      }
     } catch (error) {
       console.error('Error sending email:', error);
       alert('Error sending email. Please try again.');
     }
   };
 
-  const generateTripLink = () => {
-    // כאן אתה יכול להוסיף לוגיקה שתייצר את הקישור לטיול באופן אוטומטי
-    const tripLink = "הכתובת של הטיול האוטומטי"; // יש לשנות עם הלוגיקה המתאימה
+  const generateTripLink = (tripId) => {
+    // כתוב הלוגיקה המתאימה ליצירת הקישור
+    const tripLink = `http://your-website.com/join-trip?tripId=${tripId}`;
     return tripLink;
   };
 
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-md-6 offset-md-3">
+        <div className="md-3">
           <h2 className="text-center mb-4">Send Email</h2>
           <form>
-            <div className="mb-3 mt-5">
+            <div className="mb-3">
               <label htmlFor="email" className="form-label">Email:</label>
-              <input type="email" className="form-control mx-3" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="mb-3">
               <label htmlFor="subject" className="form-label">Subject:</label>

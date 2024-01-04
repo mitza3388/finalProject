@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const TripLine = ({ trip }) => {
     return (
-        <div key={trip.tripId}>
+        <div key={trip._id}>
             <span>{trip.tripName}</span>
             <span>{trip.tripDate}</span>
-            <Link to={`/view-trip/${trip.tripId}`}>
+            <Link to={`/view-trip/${trip._id}`}>
                 <button>+</button>
             </Link>
         </div>
