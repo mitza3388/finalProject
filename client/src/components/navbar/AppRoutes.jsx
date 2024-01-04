@@ -8,7 +8,8 @@ import EntryAs from '../entryAs/EntryAs'
 import GuideEntryPage from '../guideEntryPage/GuideEntryPage'
 import Traveler from '../Traveler/Traveler'
 import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip'
-// import ResumesList from '../../pages/resumeList/ResumesList'
+import MyTrips from '../myTrips/MyTrips'
+import EquipmentList from '../EquipmentList/EquipmentList'
 
 
 export default function AppRoutes() {
@@ -21,10 +22,9 @@ export default function AppRoutes() {
       <Route path='/guide' element={<GuideEntryPage/>}/>
       <Route path='/traveler' element={<Traveler/>}/>
       <Route path='/createNewTrip' element={<CreateNewTrip/>}/>
-      
-      {/* <Route path='/form' element={<Form/>}/>
-      <Route path='/display' element={<Resume />}/>
-      <Route path='/ResumesList' element={<ResumesList />}/> */}
+      <Route path='/createEquipmentList' element={<EquipmentList/>}/>
+      <Route path='/MyTrips' element={<MyTrips/>}/>
+
       {/* <Route path='*' element={<NoPage />}/> */}
     </Routes>
   )

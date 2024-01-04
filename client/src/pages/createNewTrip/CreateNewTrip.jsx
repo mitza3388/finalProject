@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import fetchData from '../../utils/fetchData'
+import { useNavigate } from "react-router-dom";
+
 import './createNewTrip.css'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -9,7 +11,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 const CreateNewTrip = () => {
 
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   //   name: '',
   //   date: '',
@@ -30,11 +32,12 @@ const CreateNewTrip = () => {
     e.preventDefault();
     try {
       const response = await fetchData('trips/addNewTrip', 'POST', formData);
-      if (!response.ok) {
+      console.log(response);
+      if (!response) {
         console.log('Bad Request');
       }
       else {
-        navigate('/register');
+        navigate('/guide');
       }
     }
 
@@ -54,13 +57,13 @@ const CreateNewTrip = () => {
             type="text"
             id="tripName"
             name="tripName"
-            value={formData.tripName}
+            // value={formData.tripName}
             onChange={handleChange}
             style={styles.input}
           />
         </div>
 
-        <div style={styles.inputGroup}>
+        {/* <div style={styles.inputGroup}>
           <label style={styles.label} htmlFor="tripDesc">
             Trip Description:
           </label>
@@ -85,23 +88,23 @@ const CreateNewTrip = () => {
             onChange={handleChange}
             style={styles.input}
           />
-        </div>
+  </div>*/}
 
         <div style={styles.buttonGroup}>
-          <button type="button"
-          //  onClick={handleAddLandmark} 
+          {/* <button type="button"
+           onClick= {() => navigate('/createLandmark')}
            style={styles.button}>
             Add Landmark
-          </button>
+          </button> */}
 
           <button
             type="button"
-            // onClick={handleAddEquipmentList}
+            onClick= {() => navigate('/createEquipmentList')}
             style={styles.button}
           >
             Add Equipment List
           </button>
-        </div>
+        </div> 
 
         <button type="submit" style={styles.submitButton}>
           Submit

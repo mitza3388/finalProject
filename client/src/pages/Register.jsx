@@ -40,7 +40,7 @@ const Register = () => {
   };
 
   return (
-    <div className="box">
+    <div className="box pt-5">
       <h2>Register</h2>
       <form id="registerForm" onSubmit={handleSubmit}>
         <label htmlFor="registerEmail">
