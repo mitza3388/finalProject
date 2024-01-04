@@ -266,6 +266,8 @@ import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import { useNavigate } from 'react-router-dom';
 import LocationSelector from '../locationSelector/LocationSelector';
+import { Button } from '@mui/material';
+import fetchData from '../../utils/fetchData';
 
 const CreateLandmark = () => {
     const navigate = useNavigate();
@@ -308,6 +310,18 @@ const CreateLandmark = () => {
         // Your form submission logic here
 
         console.log('Form data submitted:', formData);
+
+
+            try {
+                const response = await fetchData(`/addNewLandmark/${id}`, 'PUT', formData);
+                console.log(response);
+                setData(response);
+            } catch (error) {
+                console.error('Error:', error.message);
+                setError(error);
+            }
+        
+
         setFormData({
             location: '',
             landmarkName: '',
@@ -328,7 +342,7 @@ const CreateLandmark = () => {
             noValidate
             autoComplete="off"
         >
-            <div className='d-flex row bg-dark'>
+            <div className='d-flex row'>
                 <div>
                     <TextField
                         id="landmark-name"
@@ -379,9 +393,9 @@ const CreateLandmark = () => {
 
                     <LocationSelector onLocationChange={handleLocationChange} />
 
-                    <button type="submit" onClick={handleSubmit}>
+                    <Button type="submit" onClick={handleSubmit}>
                         Create Landmark
-                    </button>
+                    </Button>
                 </div>
                 <div>
                     {/* Additional content can be added here if needed */}
