@@ -1,19 +1,20 @@
 import React from 'react';
 import TravelerChips from '../travelerChips/TravelerChips';
 import WaypointsAccordion from '../waypointsAccordion/WaypointsAccordion';
-import { useTrip } from '../../context/tripsContext';
+// import { useTrip } from '../../context/tripsContext';
 
 const ViewTrip = () => {
-  const { trip } = useTrip();
+  // const { trip } = useTrip();
 
-  if (!trip) {
-    return <div>No trip data available</div>;
-  }
+  // if (!trip) {
+  //   return <div>No trip data available</div>;
+  // }
 
   return (
     <div>
-      <WaypointsAccordion waypoints={trip.waypoints} />
-      <TravelerChips travelers={trip.travelers} />
+      View Trip
+      {/* <WaypointsAccordion waypoints={trip.waypoints} />
+      <TravelerChips travelers={trip.travelers} /> */}
     </div>
   );
 }

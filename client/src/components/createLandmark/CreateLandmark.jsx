@@ -260,7 +260,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -268,10 +268,13 @@ import { useNavigate } from 'react-router-dom';
 import LocationSelector from '../locationSelector/LocationSelector';
 import { Button } from '@mui/material';
 import fetchData from '../../utils/fetchData';
+import { useTripContext } from '../../context/tripsContext';
 
 const CreateLandmark = () => {
-    const navigate = useNavigate();
 
+    const { trip, updateTrip } = useTripContext();
+    const navigate = useNavigate();
+    const routes = [];
     // State to manage form data
     const [formData, setFormData] = useState({
         location: '',
@@ -282,6 +285,10 @@ const CreateLandmark = () => {
         nextLandmarkId: 0,
     });
 
+//     useEffect(() => {
+//    console.log(trip);
+//     }, [trip])
+    
     // State to manage clicked location
     const [clickedLocation, setClickedLocation] = useState(null);
 
@@ -312,15 +319,25 @@ const CreateLandmark = () => {
         console.log('Form data submitted:', formData);
 
 
-            try {
-                const response = await fetchData(`/addNewLandmark/${id}`, 'PUT', formData);
-                console.log(response);
-                setData(response);
-            } catch (error) {
-                console.error('Error:', error.message);
-                setError(error);
-            }
-        
+        // try {
+        //     const response = await fetchData(`/addNewLandmark/${id}`, 'PUT', formData);
+        //     console.log(response);
+        //     setData(response);
+        // } catch (error) {
+        //     console.error('Error:', error.message);
+        //     setError(error);
+        // }
+
+        console.log('form data is', formData);
+
+        routes.push(formData);
+
+        console.log('routes is',routes);
+
+        updateTrip('route', [...routes]);
+
+
+        console.log('trip is', trip);
 
         setFormData({
             location: '',
