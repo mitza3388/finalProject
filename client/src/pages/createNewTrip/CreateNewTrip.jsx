@@ -11,14 +11,11 @@ const CreateNewTrip = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Update the trip context dynamically as the form changes
-    updateTrip({
-      ...trip,
-      [name]: value,
-    });
-  };
   
+    // Update the trip context dynamically as the form changes
+    updateTrip(name, value);
+  };
+    
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

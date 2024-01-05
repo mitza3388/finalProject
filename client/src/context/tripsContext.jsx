@@ -5,10 +5,13 @@ const TripContext = createContext();
 const TripProvider = ({ children }) => {
   const [trip, setTrip] = useState({ tripName: '', route: [] });
 
-  const updateTrip = (newTrip) => {
-    setTrip(newTrip);
+  const updateTrip = (fieldName, value) => {
+    setTrip((prevTrip) => ({
+      ...prevTrip,
+      [fieldName]: value,
+    }));
   };
-
+  
   return (
     <TripContext.Provider value={{ trip, updateTrip }}>
       {children}
