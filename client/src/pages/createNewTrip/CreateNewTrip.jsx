@@ -1,71 +1,37 @@
-import React, { useState } from 'react'
-import fetchData from '../../utils/fetchData'
-import { useNavigate } from "react-router-dom";
-
-import './createNewTrip.css'
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Skeleton from '@mui/material/Skeleton';
-
-
+import React from 'react';
+import fetchData from '../../utils/fetchData';
+import { useNavigate } from 'react-router-dom';
+import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import './createNewTrip.css';
+import { useTripContext } from '../../context/tripsContext';
 
 const CreateNewTrip = () => {
-
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({});
-  //   name: '',
-  //   date: '',
-
-  // });
-
+  const { trip, updateTrip } = useTripContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  
+    // Update the trip context dynamically as the form changes
+    updateTrip(name, value);
   };
-
-
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await fetchData('trips/addNewTrip', 'POST', formData);
-  //     if (!response.ok) {
-  //       console.log('Bad Request');
-  //       setError(true);
-  //     }
-  //     else {
-  //       navigate('/register');
-  //     }
-  //   }
-
-  //   catch (error) {
-  //     console.error('Error:', error.message);
-  //   }
-  // };
-
-
+    
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetchData('trips/addNewTrip', 'POST', formData);
+      const response = await fetchData('trips/addNewTrip', 'POST', trip);
       console.log(response);
       if (!response) {
         console.log('Bad Request');
-      }
-      else {
+      } else {
+        const newTrip = response.data; // Adjust this based on your API response
+        updateTrip(newTrip); // Update the context with the newly created trip
         navigate('/guide');
       }
-    }
-
-    catch (error) {
+    } catch (error) {
       console.error('Error:', error.message);
     }
-  }
-
+  };
 
 
   // return (
@@ -98,28 +64,67 @@ const CreateNewTrip = () => {
   //   </div>
   // );
   return (
-
-  <div style={styles.container}>
+    <div className='container' style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
+        <h2>Add new Trip</h2>
         <div style={styles.inputGroup}>
-          <label style={styles.label} htmlFor="tripName">
-            Trip Name:
+          <FloatingLabel controlId="floating input" label="Trip name" className="my-4 w-75">
+            <Form.Control
+              type="text"
+              placeholder="Trip name"
+              name='tripName'
+              value={trip.tripName}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
+
+          <div>
+            <div className='d-flex justify-content-around'>
+              <Button
+                className='m-3 bg-danger px-3'
+                onClick={() => navigate('/createEquipmentList')}>
+                Add Equipment List
+              </Button>
+
+              <Button
+                className='m-3 bg-danger px-3'
+                onClick={() => navigate('/createEquipmentList')}>
+                Add --- List
+              </Button>
+
+              <Button
+                className='m-3 bg-danger'
+                onClick={() => navigate('/createLandmark')}
+              >
+                Add Landmark</Button>
+            </div>
+
+            <Button type="submit" className='w-100'>
+              Submit
+            </Button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+{/* <label style={styles.label} htmlFor="tripName">
           </label>
           <input
+            placeholder='Trip name'
             type="text"
             id="tripName"
             name="tripName"
-            // value={formData.tripName}
+            value={formData.tripName}
             onChange={handleChange}
             style={styles.input}
-          />
-        </div>
+          /> */}
 
-        {/* <div style={styles.inputGroup}>
+{/* <div style={styles.inputGroup}>
           <label style={styles.label} htmlFor="tripDesc">
             Trip Description:
           </label>
-          <textarea
+          <textarea   
             id="tripDesc"
             name="tripDesc"
             value={formData.tripDesc}
@@ -142,29 +147,8 @@ const CreateNewTrip = () => {
           />
   </div>*/}
 
-        <div style={styles.buttonGroup}>
-          {/* <button type="button"
-           onClick= {() => navigate('/createLandmark')}
-           style={styles.button}>
-            Add Landmark
-          </button> */}
 
-          <button
-            type="button"
-            onClick= {() => navigate('/createEquipmentList')}
-            style={styles.button}
-          >
-            Add Equipment List
-          </button>
-        </div> 
 
-        <button type="submit" style={styles.submitButton}>
-          Submit
-        </button>
-      </form>
-    </div>
-  );
-};
 
 const styles = {
   container: {
@@ -175,7 +159,7 @@ const styles = {
     height: '100vh',
   },
   form: {
-    width: '400px',
+    width: '600px',
     padding: '20px',
     border: '1px solid #ccc',
     borderRadius: '8px',
