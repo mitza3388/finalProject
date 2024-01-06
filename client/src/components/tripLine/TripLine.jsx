@@ -16,24 +16,42 @@
 
 // export default TripLine;
 
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TripLine = ({ trip }) => {
-    return (
-        <div key={trip.tripId} onClick={() => console.log(`Add button clicked for ${trip.tripName}`)}style={{ margin: '20px', minHeight: '30px' }}>
-            <img
-                src="https://cdn-icons-png.flaticon.com/128/703/703320.png?ga=GA1.1.707984635.1704275258&semt=ais"
-                alt="Add icon"
-                style={{ marginRight: '5px', width: '40px', height: '40px', fontSize: '20' }}
+  const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
-            />
-            <span>{trip.tripName} </span>
-            <span>{trip.tripDate} </span>
-
-        </div>
-    );
+  return (
+    <div
+      key={trip.tripId}
+      onClick={() => navigate("/")}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        margin: '20px',
+        minHeight: '30px',
+        cursor: 'pointer', // Change cursor on hover
+        color: isHovered ? '#e0e0e0' : 'transparent', // Change background color on hover
+        transition: 'color 0.3s', // Add smooth transition
+        fontSize: '30px'
+      }}
+    >
+      <img
+        src="https://cdn-icons-png.flaticon.com/128/703/703320.png?ga=GA1.1.707984635.1704275258&semt=ais"
+        alt="Add icon"
+        style={{ marginRight: '5px', width: '40px', height: '40px', fontSize: '20' }}
+      />
+      <span style={{ color: isHovered ? '#184655' : 'black' }}>{trip.tripName} </span>
+      <span>{trip.tripDate} </span>
+    </div>
+  );
 };
 
 export default TripLine;
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 0b2bf334881386e22907f34eb39bdb43a4a357b0

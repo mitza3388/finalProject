@@ -9,6 +9,7 @@ import AppRoutes from './components/navbar/AppRoutes'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/authContext'
 import { TripProvider } from './context/tripsContext'
+import SideNavbar from './components/sideNavbar/SideNavbar';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           </BrowserRouter>
         </TripProvider>
       </AuthProvider>
+      <SideNavbar></SideNavbar>
     </>
   );
 }
