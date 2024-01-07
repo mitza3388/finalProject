@@ -31,7 +31,7 @@ export default function AppRoutes() {
       <Route path='/guide' element={<GuideEntryPage/>}/>
       <Route path='/traveler' element={<Traveler/>}/>
       <Route path='/createNewTrip' element={<CreateNewTrip/>}/>
-      <Route path='/viewTrip' element={<viewTrip/>}/>
+      <Route path='/viewTrip' element={<ViewTrip/>}/>
 
       <Route path='/createLandmark' element={<CreateLandmark/>}/>
       <Route path='/locationSelector' element={<LocationSelector/>}/>
