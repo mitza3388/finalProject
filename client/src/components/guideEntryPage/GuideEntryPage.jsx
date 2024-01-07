@@ -8,6 +8,7 @@ import { TripProvider } from '../../context/tripsContext';
 // import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
 
 import './guideEntryPage.css'
+import { Button } from 'react-bootstrap';
 const GuideEntryPage = () => {
     const navigate = useNavigate();
     const [data, setData] = useState(null);
@@ -43,7 +44,7 @@ const GuideEntryPage = () => {
             <TripProvider>
                 <MyTrips trips={data}></MyTrips>
                 {/* <button onClick={() => console.log("לשים כאן פונקציה")}>create new trip</button> */}
-                <button onClick={() => navigate('/createNewTrip')}>create new trip</button>
+                <Button className='m-3' onClick={() => navigate('/createNewTrip')}>create new trip</Button>
             </TripProvider>
         </>);
 };

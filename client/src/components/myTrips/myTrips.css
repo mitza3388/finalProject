@@ -1,0 +1,16 @@
+.my-trips-container {
+    text-align: center;
+  }
+  
+  .my-trips-title {
+    margin-bottom: 20px;
+  }
+  
+  .my-trips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Add any additional styling as needed */
+  
