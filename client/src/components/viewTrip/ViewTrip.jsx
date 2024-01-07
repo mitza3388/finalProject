@@ -1,10 +1,15 @@
 import React from 'react';
 import TravelerChips from '../travelerChips/TravelerChips';
-import WaypointsAccordion from '../waypointsAccordion/WaypointsAccordion';
-<<<<<<< HEAD
 import LandmarkTimeline from '../landmarkTimeline/LandmarkTimeline';
+import { useTripContext } from '../../context/tripsContext';
 
-const ViewTrip = ()=> {
+const ViewTrip = () => {
+  const { trip } = useTripContext();
+
+  if (!trip) {
+    return <div>No trip data available</div>;
+  }
+
   const sampleLandmarks = [
     {
       location: 'Point A',
@@ -39,30 +44,16 @@ const ViewTrip = ()=> {
       nextLandmarkId: 0, // Loop back to the first landmark
     },
   ];
-  
-  
-  
-  return (
-    <div>
-      <LandmarkTimeline landmarks={sampleLandmarks}></LandmarkTimeline>
-        {/* <WaypointsAccordion></WaypointsAccordion>
-        <TravelerChips></TravelerChips> */}
-=======
-// import { useTrip } from '../../context/tripsContext';
 
-const ViewTrip = () => {
-  // const { trip } = useTrip();
-
-  // if (!trip) {
-  //   return <div>No trip data available</div>;
-  // }
+  const landmarks = trip.route;
+console.log(trip.route);
 
   return (
-    <div>
-      View Trip
-      {/* <WaypointsAccordion waypoints={trip.waypoints} />
-      <TravelerChips travelers={trip.travelers} /> */}
->>>>>>> 0b2bf334881386e22907f34eb39bdb43a4a357b0
+     <div>
+  {/* <LandmarkTimeline landmarks={sampleLandmarks}></LandmarkTimeline> */}
+      <LandmarkTimeline landmarks={landmarks}></LandmarkTimeline>
+      {/* <WaypointsAccordion></WaypointsAccordion>*/} 
+        <TravelerChips></TravelerChips> 
     </div>
   );
 }

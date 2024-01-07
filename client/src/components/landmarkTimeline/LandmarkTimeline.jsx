@@ -10,6 +10,9 @@ import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import Typography from '@mui/material/Typography';
 
 const LandmarkTimeline = ({ landmarks }) => {
+  if (landmarks.length === 0)
+    return <div>It seems that the guide has not yet created a route for the trip</div>;
+    
   return (
     <Timeline position="alternate">
       {landmarks.map((landmark, index) => (

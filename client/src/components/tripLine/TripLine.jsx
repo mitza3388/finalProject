@@ -26,7 +26,7 @@ const TripLine = ({ trip }) => {
   return (
     <div
       key={trip.tripId}
-      onClick={() => navigate("/")}
+      onClick={() => navigate("/viewTrip")}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
@@ -50,8 +50,4 @@ const TripLine = ({ trip }) => {
 };
 
 export default TripLine;
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 0b2bf334881386e22907f34eb39bdb43a4a357b0
