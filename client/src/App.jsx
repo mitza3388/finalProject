@@ -16,15 +16,17 @@ function App() {
 
   return (
     <>
+     <BrowserRouter>
       <AuthProvider>
         <TripProvider>
-          <BrowserRouter>
+         
             {/* <Navbar /> */}
+            {/* <SideNavbar /> */}
             <AppRoutes />
-          </BrowserRouter>
+          
         </TripProvider>
       </AuthProvider>
-      <SideNavbar></SideNavbar>
+      </BrowserRouter>
     </>
   );
 }

@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,12 +10,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DehazeIcon from '@mui/icons-material/Dehaze';
-import { Pets } from '@mui/icons-material';
+import PetsIcon from '@mui/icons-material/Pets'; // Change to the appropriate icons for each menu item
+import { useNavigate } from 'react-router-dom';
 
-export default function SideNavbar() {
-  const [state, setState] = React.useState({
-    left: false,
-  });
+const SideNavbar = () => {
+  const navigate = useNavigate();
+
+  const [state, setState] = React.useState({ left: false });
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -22,6 +24,11 @@ export default function SideNavbar() {
     }
 
     setState({ ...state, left: open });
+  };
+
+  const handleMenuItemClick = (route) => {
+    navigate(route);
+    setState({ ...state, left: false });
   };
 
   const list = (
@@ -32,11 +39,17 @@ export default function SideNavbar() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {[
+          { text: 'Logout', route: '/guide' },
+          { text: 'Gallery', route: '/guide' },
+          { text: 'Home', route: '/' },
+          { text: 'Enter as a Guide', route: '/guide' },
+          { text: 'Enter as a Participant', route: '/guide' },
+        ].map(({ text, route }, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => handleMenuItemClick(route)}>
               <ListItemIcon>
-                {index % 2 === 0 ? <Pets /> : <Pets />}
+                <PetsIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -44,18 +57,7 @@ export default function SideNavbar() {
         ))}
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Pets /> : <Pets />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      {/* Add additional sections or items as needed */}
     </Box>
   );
 
@@ -74,3 +76,5 @@ export default function SideNavbar() {
     </div>
   );
 }
+
+export default SideNavbar;

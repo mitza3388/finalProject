@@ -454,6 +454,7 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import './createNewTrip.css';
 import LandmarkModal from '../../components/landmarkModal/LandmarkModal';
 import { useTripContext } from '../../context/tripsContext';
+import SideNavbar from '../../components/sideNavbar/SideNavbar';
 
 const CreateNewTrip = () => {
   const navigate = useNavigate();
@@ -517,6 +518,8 @@ const CreateNewTrip = () => {
   //   </div>
   // );
   return (
+    <>
+    <SideNavbar />
     <div className='container' style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
         <h2>Add new Trip</h2>
@@ -559,6 +562,7 @@ const CreateNewTrip = () => {
 
       <LandmarkModal show={showModal} handleClose={handleCloseModal} />
     </div>
+    </>
   );
 };
 {/* <label style={styles.label} htmlFor="tripName">
