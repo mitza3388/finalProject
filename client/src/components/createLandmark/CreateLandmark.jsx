@@ -7,12 +7,14 @@ import LocationSelector from '../locationSelector/LocationSelector';
 import { Button } from '@mui/material';
 import fetchData from '../../utils/fetchData';
 import { useTripContext } from '../../context/tripsContext';
+import { useLandmarksContext } from '../../context/landmarksContext';
+import { Update } from '@mui/icons-material';
 
-const CreateLandmark = () => {
+const CreateLandmark = ({handleClose}) => {
 
     const { trip, updateTrip } = useTripContext();
+    // const {landmarks,setLandmarks} = useLandmarksContext([]);
     const navigate = useNavigate();
-    const routes = [];
 
     const [formData, setFormData] = useState({
         location: '',
@@ -23,8 +25,14 @@ const CreateLandmark = () => {
         nextLandmarkId: 0,
     });
 
+    // useEffect(() => {
+    //     console.log("Updated landmarks:", landmarks);
+    //     // Any other actions you want to perform after updating landmarks
+    //   }, [landmarks]);
+      
+
 //     useEffect(() => {
-//    console.log(trip);
+//    console.log("trip in use effect",trip);
 //     }, [trip])
     
     // State to manage clicked location
@@ -46,17 +54,16 @@ const CreateLandmark = () => {
             location: `${location.lat.toFixed(4)}, ${location.lng.toFixed(4)}`,
             landmarkName: location.streetName,
         }));
+        handleClose;
     };
 
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-
-        routes.push(formData);
-
-        updateTrip('route', [...routes]);
-
+        // setLandmarks((prevLandmarks) => [...prevLandmarks, formData]);
+        // console.log("landmarks on submit",landmarks);
+        updateTrip('route', formData);
+        
         setFormData({
             location: '',
             landmarkName: '',
@@ -129,7 +136,7 @@ const CreateLandmark = () => {
                     <LocationSelector onLocationChange={handleLocationChange} />
 
                     <Button type="submit" onClick={handleSubmit}>
-                        Create Landmark
+                      save
                     </Button>
                 </div>
             </div>

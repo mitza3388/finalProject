@@ -37,8 +37,6 @@ const EquipmentList = () => {
     <div className='m-3'>
       <h5>Equipment List</h5>
       <ListGroup as="ol" className='mb-3' numbered>
-      <ListGroup.Item as="li">Cras justo odio</ListGroup.Item>
-
         {items.map((item, index) => (
           <ListGroup.Item as="li" key={index}>
             <input className='col-10'

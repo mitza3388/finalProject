@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import fetchData from '../../utils/fetchData';
 import { useNavigate } from 'react-router-dom';
 import { Button, FloatingLabel, Form, ListGroup } from 'react-bootstrap';
 import './createNewTrip.css';
+import LandmarkModal from '../../components/landmarkModal/LandmarkModal';
 import { useTripContext } from '../../context/tripsContext';
 import EquipmentList from '../../components/EquipmentList/EquipmentList';
 import LandmarkTimeline from '../../components/landmarkTimeline/LandmarkTimeline';
+import { useLandmarksContext } from '../../context/landmarksContext';
 
 const CreateNewTrip = () => {
   const navigate = useNavigate();
   const { trip, updateTrip } = useTripContext();
+  // const { landmarks } = useLandmarksContext([]);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,16 +25,41 @@ const CreateNewTrip = () => {
     updateTrip(name, value);
   };
 
+  // useEffect(() => {
+  //   console.log("landmarks in create new trip", landmarks);
+  //   updateTrip('route', [...landmarks]);
+  //   console.log("trip after landmark", trip);
+  // }, [landmarks, trip]);
+  // useEffect(() => {
+  //   console.log("landmarks in create new trip", landmarks);
+
+  //   // Compare the current trip with the new trip
+  //   const isTripChanged = JSON.stringify(trip) !== JSON.stringify({ ...trip, route: landmarks });
+
+  //   if (isTripChanged) {
+  //     updateTrip('route', [...landmarks]);
+  //     console.log("trip after landmark", trip);
+  //   }
+  // }, [landmarks, trip, updateTrip]);
+
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // updateTrip('route', [...landmarks]);
+    // console.log("trip after landmark",trip);
+
     try {
       const response = await fetchData('trips/addNewTrip', 'POST', trip);
       console.log(response);
       if (!response) {
         console.log('Bad Request');
       } else {
-        const newTrip = response.data; // Adjust this based on your API response
-        updateTrip(newTrip); // Update the context with the newly created trip
+        const newTrip = await response.data; // Adjust this based on your API response
+        // updateTrip(newTrip); // Update the context with the newly created trip
+        console.log("new trip added!!!",trip);
         navigate('/guide');
       }
     } catch (error) {
@@ -51,6 +83,7 @@ const CreateNewTrip = () => {
             />
           </FloatingLabel>
 
+
           <div>
             <div className='d-flex justify-content-around'>
               <div>
@@ -63,11 +96,11 @@ const CreateNewTrip = () => {
 
                 <Button
                   className='mt-5 mb-3 bg-danger'
-                  onClick={() => navigate('/createLandmark')}
-                >
-                  Add Landmark</Button>
+                  onClick={handleShowModal}>
+                  Add Landmark
+                </Button>
 
-                <LandmarkTimeline landmarks={trip.route}>
+                <LandmarkTimeline>
 
                 </LandmarkTimeline>
                 <Button
@@ -81,12 +114,14 @@ const CreateNewTrip = () => {
 
             </div>
 
-            <Button type="submit" className='w-100'>
+            <Button type="submit" className='w-100 mt-5'>
               Submit
             </Button>
           </div>
         </div>
       </form>
+
+      <LandmarkModal show={showModal} handleClose={handleCloseModal}  />
     </div>
   );
 };
@@ -102,7 +137,8 @@ const styles = {
     height: '100vh',
   },
   form: {
-    width: '800px',
+    width: '900px',
+    height: '600px',
     padding: '20px',
     border: '1px solid #ccc',
     borderRadius: '8px',
@@ -149,3 +185,4 @@ const styles = {
 };
 
 export default CreateNewTrip;
+

@@ -1,17 +1,19 @@
 import React from 'react';
 import TripLine from '../tripLine/TripLine';
+import { useTripContext } from '../../context/tripsContext';
 
 const MyTrips = ({ trips }) => {
+
+  // const { trip, updateTrip } = useTripContext();
 
   return (
     <div>
       <h2>My Trips</h2>
       <ul>
         {trips?.map((trip, index) => (
-          <TripLine key={index} trip={trip}></TripLine>
+          <TripLine key={index} currTrip={trip}></TripLine>
         ))}
       </ul>
-      {/* <button onClick={() => console.log("לשים כאן פונקציה")}>צור טיול חדש</button> */}
     </div>
   );
 };
