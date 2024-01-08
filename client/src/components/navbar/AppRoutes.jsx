@@ -26,7 +26,7 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/register' element={<EntryAs/>}/>
+      <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<EntryAs/>}/>
       <Route path='/guide' element={<GuideEntryPage/>}/>
       <Route path='/traveler' element={<Traveler/>}/>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import fetchData from '../utils/fetchData'
 import { useNavigate } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 
 const Register = () => {
 
-  
+
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,19 +25,18 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await fetchData('users/register', 'POST', formData);
-      if (!response.ok) {
+      if (response.message !== 'succed register') {
         console.log('Bad Request');
         setError(true);
+      } else {
+        navigate('/login');
       }
-      else {
-        navigate('/register');
-      }
-    }
-
-    catch (error) {
+    } catch (error) {
       console.error('Error:', error.message);
     }
   };
+
+
 
   return (
     <div className="box pt-5">
@@ -65,7 +64,7 @@ const Register = () => {
         <br />
         <button type="submit">Register</button>
       </form>
-      {error && <h5 style={{ color: 'red' }}>user is already exist</h5>}
+      {error && <h5 style={{ color: 'red' }}>user is already exist, please <Link to={"/"}> Login </Link></h5>}
     </div>
   );
 };
