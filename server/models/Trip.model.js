@@ -32,9 +32,9 @@ const tripSchema = new mongoose.Schema({
   ],
   equipmentList: [
     {
-      userName: String,
-      productName: String,
-      productId: Number
+      // userName: String,
+      productName: String
+      // productId: Number
     }
   ]
 });
