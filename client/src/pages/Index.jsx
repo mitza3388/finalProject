@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './Login';
 import Register from './Register';
+import { Link } from 'react-router-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,10 +15,12 @@ export default function Home() {
           <div className="row">
             <div className="col-md-6">
               <Login />
+              <p>Not registered yet? </p>
+              <Link to={"/register"}> Sign Up </Link>
             </div>
-            <div className="col-md-6">
+            {/* <div className="col-md-6">
               <Register />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

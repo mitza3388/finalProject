@@ -48,7 +48,8 @@ exports.register = async (req, res, next) => {
         //* generate token
         
         //* response to the client
-        return res.status(201).send("succed register");
+        return res.status(201).send({ message: "succed register" });
+
     } catch (error) {
         next(error);
     }
