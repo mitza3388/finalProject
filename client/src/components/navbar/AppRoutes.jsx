@@ -41,7 +41,7 @@ export default function AppRoutes() {
       <Route path='/MyTrips' element={<MyTrips/>}/>
 
 //       <Route path='/traveler' element={<TravelerTrips/>}/>
-      <Route path='/view-trip/:tripId' element={<ViewTrip />} />
+      <Route path='/viewTrip/:tripId' element={<ViewTrip />} />
       <Route path='/email' element={<EmailComponent />} />
 
       {/* <Route path='/form' element={<Form/>}/>
