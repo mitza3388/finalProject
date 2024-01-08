@@ -15,8 +15,8 @@ export default function Home() {
           <div className="row">
             <div className="col-md-6">
               <Login />
-              <p>Not registered yet? </p>
-              <Link to={"/register"}> Sign Up </Link>
+              <h7>Not registered yet? 
+              <Link to={"/register"} className="no-underline"> Sign Up </Link></h7>
             </div>
             {/* <div className="col-md-6">
               <Register />
