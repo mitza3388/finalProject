@@ -1,6 +1,6 @@
 const express = require("express");
 const Joi = require("joi");
-const { register, login, updateUser, deleteUser, getMyTrips } = require("../controllers/user.controller");
+const { register, login, updateUser, deleteUser, getMyTrips, logout } = require("../controllers/user.controller");
 const { auth } = require("../middlewares/auth");
 
 const router = express.Router();
@@ -41,5 +41,6 @@ router.post("/login", login);
 router.delete("/delete/:userId", auth(), deleteUser);
 router.patch("/update/:userId", auth(), updateUser);
 router.get("/getMyTrips", auth(), getMyTrips);
+router.post("/logout", auth(), logout);
 
 module.exports = router;
