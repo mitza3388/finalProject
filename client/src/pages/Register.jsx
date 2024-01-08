@@ -67,7 +67,8 @@ const Register = () => {
         <br />
         <button type="submit">Register</button>
       </form>
-      {error && <h5 style={{ color: 'red' }}>user is already exist, please <Link to={"/"}> Login </Link></h5>}
+      {error && <h7 style={{ color: 'red' }}> <p>user is already exist, please 
+      <Link to={"/"} className="no-underline"> Login </Link></p></h7>}
     </div>
   );
 };

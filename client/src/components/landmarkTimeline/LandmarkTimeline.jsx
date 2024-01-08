@@ -8,8 +8,13 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import Typography from '@mui/material/Typography';
+import { useLandmarksContext } from '../../context/landmarksContext';
+import { useTripContext } from '../../context/tripsContext';
 
-const LandmarkTimeline = ({ landmarks }) => {
+const LandmarkTimeline = () => {
+  // const {landmarks,setLandmarks} = useLandmarksContext();
+  const { trip } = useTripContext();
+  const landmarks = trip.route;
   if (landmarks.length === 0)
     return <div>It seems that the guide has not yet created a route for the trip</div>;
     

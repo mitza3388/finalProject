@@ -1,4 +1,4 @@
-  // import './App.css'
+// import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyTrips from './components/myTrips/MyTrips';
 import TravelerChips from './components/travelerChips/TravelerChips';
@@ -10,6 +10,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/authContext'
 import { TripProvider } from './context/tripsContext'
 import SideNavbar from './components/sideNavbar/SideNavbar';
+import { LandmarksProvider } from './context/landmarksContext';
 
 
 function App() {
@@ -18,10 +19,17 @@ function App() {
     <>
      <BrowserRouter>
       <AuthProvider>
+        <LandmarksProvider>
+          <TripProvider>
+            <BrowserRouter>
+              <AppRoutes />
+            </BrowserRouter>
+          </TripProvider>
+        </LandmarksProvider>
         <TripProvider>
          
             {/* <Navbar /> */}
-            {/* <SideNavbar /> */}
+            <SideNavbar />
             <AppRoutes />
           
         </TripProvider>

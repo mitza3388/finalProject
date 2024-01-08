@@ -46,6 +46,23 @@ export default function AppRoutes() {
 
       <Route path='/traveler' element={<TravelerTrips />} />
       <Route path='/view-trip/:tripId' element={<ViewTrip />} />
+      <Route path='/' element={<Home/>}/>
+      <Route path='/register' element={<Register/>}/>
+      <Route path='/login' element={<EntryAs/>}/>
+      <Route path='/guide' element={<GuideEntryPage/>}/>
+      <Route path='/traveler' element={<Traveler/>}/>
+      <Route path='/createNewTrip' element={<CreateNewTrip/>}/>
+      <Route path='/viewTrip' element={<ViewTrip/>}/>
+
+      <Route path='/createLandmark' element={<CreateLandmark/>}/>
+      <Route path='/locationSelector' element={<LocationSelector/>}/>
+      
+
+      <Route path='/createEquipmentList' element={<EquipmentList/>}/>
+      <Route path='/MyTrips' element={<MyTrips/>}/>
+
+//       <Route path='/traveler' element={<TravelerTrips/>}/>
+      <Route path='/viewTrip/:tripId' element={<ViewTrip />} />
       <Route path='/email' element={<EmailComponent />} />
       <Route path='/inviteFriends' element={<InviteFriends />} />
       <Route path='/join-trip/:tripId' element={<Home />} />

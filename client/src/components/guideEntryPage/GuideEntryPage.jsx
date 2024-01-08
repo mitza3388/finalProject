@@ -4,10 +4,8 @@ import MyTrips from '../myTrips/MyTrips';
 import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
 import { useNavigate } from "react-router-dom";
 import { TripProvider } from '../../context/tripsContext';
-
-// import CreateNewTrip from '../../pages/createNewTrip/CreateNewTrip';
-
 import './guideEntryPage.css'
+import { LandmarksProvider } from '../../context/landmarksContext';
 import { Button } from 'react-bootstrap';
 const GuideEntryPage = () => {
     const navigate = useNavigate();
@@ -34,8 +32,8 @@ const GuideEntryPage = () => {
 
     if (!data) {
         return (
-        //<div>Loading...</div>;
-        <div className="loader"></div>
+            //<div>Loading...</div>;
+            <div className="loader"></div>
         )
     }
 
