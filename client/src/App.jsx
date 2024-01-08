@@ -17,23 +17,15 @@ function App() {
 
   return (
     <>
-     <BrowserRouter>
-      <AuthProvider>
-        <LandmarksProvider>
-          <TripProvider>
-            <BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
+          <LandmarksProvider>
+            <TripProvider>
               <AppRoutes />
-            </BrowserRouter>
-          </TripProvider>
-        </LandmarksProvider>
-        <TripProvider>
-         
-            {/* <Navbar /> */}
-            <SideNavbar />
-            <AppRoutes />
-          
-        </TripProvider>
-      </AuthProvider>
+              <SideNavbar />
+            </TripProvider>
+          </LandmarksProvider>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
