@@ -19,6 +19,7 @@ import ViewTrip from '../viewTrip/ViewTrip'
 import EmailComponent from '../emailComponent/EmailComponent'
 import InviteFriends from '../inviteFriends/InviteFriends'
 import JoinTripConfirmation from '../joinTripConfirmation/JoinTripConfirmation'
+import Logout from '../../pages/Logout'
 
 // import ResumesList from '../../pages/resumeList/ResumesList'
 
@@ -30,6 +31,7 @@ export default function AppRoutes() {
       <Route path='/' element={<Home />} />
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<EntryAs />} />
+      <Route path="/logout" element={<Logout />} />
       <Route path='/guide' element={<GuideEntryPage />} />
       <Route path='/traveler' element={<Traveler />} />
       <Route path='/createNewTrip' element={<CreateNewTrip />} />

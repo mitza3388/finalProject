@@ -66,7 +66,7 @@ const SideNavbar = () => {
         <Divider />
         <List>
           {[
-            { text: 'Logout', route: '/' },
+            { text: 'Logout', route: '/logout' },
             { text: 'Gallery', route: '/guide' },
             { text: 'Home', route: '/' },
             { text: 'Enter as a Guide', route: '/guide' },
