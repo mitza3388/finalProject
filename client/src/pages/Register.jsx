@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import fetchData from '../utils/fetchData'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 const Register = () => {
-
+  const {tripId}=useParams();
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -29,7 +29,10 @@ const Register = () => {
         console.log('Bad Request');
         setError(true);
       } else {
-        navigate('/login');
+        if(!tripId)
+          navigate('/login');
+        else
+        navigate('/JoinTripConfirmation/:tripId');
       }
     } catch (error) {
       console.error('Error:', error.message);

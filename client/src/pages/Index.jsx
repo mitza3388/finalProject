@@ -1,11 +1,14 @@
 import React from 'react';
 import Login from './Login';
 import Register from './Register';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
+  const {tripId}=useParams();
+  console.log(tripId);
+
   return (
     <div className='container-fluid align-items-center'>
       <div className="home container">

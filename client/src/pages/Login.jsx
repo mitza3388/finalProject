@@ -2,10 +2,11 @@
 // Login.jsx
 import React, { useState } from 'react';
 import fetchData from '../utils/fetchData'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const Login = () => {
+  const {tripId}=useParams();
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -44,7 +45,10 @@ const Login = () => {
         const token = await response.text();
         localStorage.setItem("token", token);
         console.log('Login successful. Token:', localStorage.getItem("token"));
-        navigate('/login');
+        if(!tripId)
+          navigate('/login');
+        else
+        navigate('/JoinTripConfirmation/:tripId');
       }
 
     } catch (error) {
