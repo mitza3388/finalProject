@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { TripProvider } from '../../context/tripsContext';
 import './guideEntryPage.css'
 import { LandmarksProvider } from '../../context/landmarksContext';
+import { Button } from 'react-bootstrap';
 const GuideEntryPage = () => {
     const navigate = useNavigate();
     const [data, setData] = useState(null);
@@ -38,8 +39,11 @@ const GuideEntryPage = () => {
 
     return (
         <>
-            <MyTrips trips={data}></MyTrips>
-            <button onClick={() => navigate('/createNewTrip')}>create new trip</button>
+            <TripProvider>
+                <MyTrips trips={data}></MyTrips>
+                {/* <button onClick={() => console.log("לשים כאן פונקציה")}>create new trip</button> */}
+                <Button className='m-3' onClick={() => navigate('/createNewTrip')}>create new trip</Button>
+            </TripProvider>
         </>);
 };
 

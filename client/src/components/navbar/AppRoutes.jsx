@@ -26,7 +26,7 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/register' element={<EntryAs/>}/>
+      <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<EntryAs/>}/>
       <Route path='/guide' element={<GuideEntryPage/>}/>
       <Route path='/traveler' element={<Traveler/>}/>
@@ -41,7 +41,7 @@ export default function AppRoutes() {
       <Route path='/MyTrips' element={<MyTrips/>}/>
 
 //       <Route path='/traveler' element={<TravelerTrips/>}/>
-      <Route path='/view-trip/:tripId' element={<ViewTrip />} />
+      <Route path='/viewTrip/:tripId' element={<ViewTrip />} />
       <Route path='/email' element={<EmailComponent />} />
 
       {/* <Route path='/form' element={<Form/>}/>

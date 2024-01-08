@@ -17,6 +17,7 @@ function App() {
 
   return (
     <>
+     <BrowserRouter>
       <AuthProvider>
         <LandmarksProvider>
           <TripProvider>
@@ -25,8 +26,15 @@ function App() {
             </BrowserRouter>
           </TripProvider>
         </LandmarksProvider>
+        <TripProvider>
+         
+            {/* <Navbar /> */}
+            <SideNavbar />
+            <AppRoutes />
+          
+        </TripProvider>
       </AuthProvider>
-      <SideNavbar></SideNavbar>
+      </BrowserRouter>
     </>
   );
 }

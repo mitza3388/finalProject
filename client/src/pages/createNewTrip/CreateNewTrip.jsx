@@ -8,6 +8,7 @@ import { useTripContext } from '../../context/tripsContext';
 import EquipmentList from '../../components/EquipmentList/EquipmentList';
 import LandmarkTimeline from '../../components/landmarkTimeline/LandmarkTimeline';
 import { useLandmarksContext } from '../../context/landmarksContext';
+import SideNavbar from '../../components/sideNavbar/SideNavbar';
 
 const CreateNewTrip = () => {
   const navigate = useNavigate();
@@ -69,6 +70,8 @@ const CreateNewTrip = () => {
 
 
   return (
+    <>
+    <SideNavbar />
     <div className='container' style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
         <h2>Add new Trip</h2>
@@ -123,6 +126,7 @@ const CreateNewTrip = () => {
 
       <LandmarkModal show={showModal} handleClose={handleCloseModal}  />
     </div>
+    </>
   );
 };
 

@@ -1,0 +1,72 @@
+.entry-as-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-container {
+    background: #dedede;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.role-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.guide,
+.participant {
+    width: 45%;
+}
+
+.icon {
+    width: 200px;
+    height: 200px;
+    background: url('https://img.freepik.com/free-vector/traveling-world-abstract-concept-illustration_335657-2478.jpg?w=740&t=st=1704657964~exp=1704658564~hmac=ed9a1e7e89aeb3241c60df0fb0cfbdc4b21db6a0c2648ae5d55ba59d7cc296bf') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 10px auto;
+}
+
+.participant .icon {
+    background: url('https://img.freepik.com/free-vector/senior-couple-travelling-visiting-foreign-countries-elderly-people-going-trip-paris-retirement-vacation-rectreation-tourism-vector-isolated-concept-metaphor-illustration_335657-1320.jpg?w=740&t=st=1704657850~exp=1704658450~hmac=f904f95606caae40af3463adf8967d77a97fa98644c478722ccc0005fb84fa1e') no-repeat center center;
+    background-size: cover;
+}
+
+.entryBox {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 10px black;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: #025498;
+}
+
+.entryBox p {
+    font-size: 24px;
+    /* Adjust the font size as needed */
+    font-weight: bold;
+    /* Optionally make the text bold */
+    margin: 10px 0;
+    /* Add some margin for spacing */
+}

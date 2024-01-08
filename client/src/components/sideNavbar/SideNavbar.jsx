@@ -1,76 +1,94 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import PetsIcon from '@mui/icons-material/Pets';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import { Link, useNavigate } from 'react-router-dom';
+import { styled } from '@mui/system';
+import { Button } from '@mui/material';
 import DehazeIcon from '@mui/icons-material/Dehaze';
-import { Pets } from '@mui/icons-material';
 
-export default function SideNavbar() {
-  const [state, setState] = React.useState({
-    left: false,
-  });
+const StyledDrawer = styled(Drawer)({
+  width: 240,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  "& .MuiDrawer-paper": {
+    width: 240,
+    boxSizing: 'border-box',
+  },
+});
 
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+const StyledDrawerHeader = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: '8px',
+});
 
-    setState({ ...state, left: open });
+const SideNavbar = () => {
+  const navigate = useNavigate();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
 
-  const list = (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Pets /> : <Pets />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Pets /> : <Pets />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  const handleMenuItemClick = (route) => {
+    navigate(route);
+    setOpen(false);
+  };
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}>
+      <Button onClick={handleDrawerOpen}>
         <DehazeIcon />
       </Button>
-      <Drawer
-        anchor="left"
-        open={state.left}
-        onClose={toggleDrawer(false)}
-      >
-        {list}
-      </Drawer>
+      <StyledDrawer variant="temporary" anchor="left" open={open} onClose={handleDrawerClose}>
+        <StyledDrawerHeader>
+          <Button onClick={handleDrawerClose}>
+            <PetsIcon />
+          </Button>
+        </StyledDrawerHeader>
+        <Divider />
+        <List>
+          {[
+            { text: 'Logout', route: '/' },
+            { text: 'Gallery', route: '/guide' },
+            { text: 'Home', route: '/' },
+            { text: 'Enter as a Guide', route: '/guide' },
+            { text: 'Enter as a Participant', route: '/traveler' },
+          ].map(({ text, route }, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton onClick={() => handleMenuItemClick(route)}>
+                <ListItemIcon>
+                  {text === 'Logout' && <ExitToAppIcon />}
+                  {text === 'Gallery' && <PhotoLibraryIcon />}
+                  {text === 'Home' && <HomeIcon />}
+                  {text === 'Enter as a Guide' && <PersonIcon />}
+                  {text === 'Enter as a Participant' && <FlightTakeoffIcon />}                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+      </StyledDrawer>
     </div>
   );
 }
+
+export default SideNavbar;
