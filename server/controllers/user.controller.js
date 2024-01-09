@@ -2,7 +2,8 @@ const bcrypt = require("bcryptjs");
 const Joi = require("joi");
 const { User } = require("../models/User.model");
 const { generateToken } = require("../utils/jwt");
-const { Trip } = require("../controllers/trip.controller")
+// const { Trip } = require("../controllers/trip.controller")
+const { Trip } = require("../models/Trip.model");
 
 const userJoiSchema = {
     login: Joi.object().keys({
@@ -173,6 +174,35 @@ exports.deleteUser = async (req, res) => {
 
 
 
+
+
+exports.addNewTrip = async (req, res, next) => {
+  const tripId = req.params.id;
+  const userId = res.locals.userId;
+
+  try {
+    // Find the trip by ID
+    const user = await User.findOne({ _id: userId });
+
+    //If it doesn't find the trip it will throw an error here
+    const trip = await Trip.findOne({ _id: tripId });
+    if (!trip) {
+      return res.status(404).json({ message: 'Trip not found' });
+    }
+
+    user.myTrips.push(tripId);
+   
+
+    // Save the updated in database
+    await user.save();
+
+    res.json(tripId);
+  } catch (error) {
+    console.log(error);
+    console.error('Error adding trip to myTrips:', error);
+    res.status(400).json({ message: 'Internal Server Error' });
+  }
+};
 
 
 
