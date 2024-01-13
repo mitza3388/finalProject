@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import fetchData from '../../utils/fetchData';
 
 const JoinTripConfirmation = () => {
   const navigate = useNavigate();
-  const {tripId}=useParams();
-  const handleConfirmation = () => {
-    // You can perform any necessary actions before navigating, if needed
-    // For now, simply navigate to the "MyTrips" component
+  const { tripId } = useParams();
+  const [error, setError] = useState("");
+
+  const handleConfirmation = async () => {
+    try {
+      const response = await fetchData(`/addNewLandmark/${id}`, 'PUT', formData);
+      console.log(response);
+      setData(response);
+    } catch (error) {
+      console.error('Error:', error.message);
+      setError(error);
+    }
+
+
     navigate('/MyTrips');
   };
 
