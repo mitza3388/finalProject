@@ -4,6 +4,7 @@ import Register from './Register';
 import { Link, useParams } from 'react-router-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Logout from './Logout';
 
 export default function Home() {
   const {tripId}=useParams();
@@ -15,12 +16,15 @@ export default function Home() {
         <div className='mt-5'>
           <h1>Welcome to Trip planner</h1>
 
-          <div className="row">
+          <div className="colomn">
             <div className="col-md-6">
               <Login />
-              <p>Not registered yet? </p>
-              <Link to={"/register"}> Sign Up </Link>
             </div>
+            <div className="col-md-9">
+              <p>Not registered yet? 
+              <Link to={"/register"} className="no-underline"> Sign Up </Link></p>
+              <Logout/>
+              </div>
             {/* <div className="col-md-6">
               <Register />
             </div> */}
