@@ -100,12 +100,14 @@ const TripLine = ({ currTrip }) => {
 
   useEffect(() => {
     updateTrip(currTrip);
-  }, [])
+  }, [currTrip])
+
 
   const handleClick = () => {
-    console.log("trip will go to view trip", trip);
-    navigate('/viewTrip');
+    console.log("trip will go to view trip", currTrip);
+    navigate('/viewTrip', { state: { trip: currTrip } });
   };
+  
 
 
   return (
