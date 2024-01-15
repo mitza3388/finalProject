@@ -67,7 +67,7 @@ const SideNavbar = () => {
         <List>
           {[
             { text: 'Logout', route: '/logout' },
-            { text: 'Gallery', route: '/guide' },
+            { text: 'Gallery', route: '/gallery' },
             { text: 'Home', route: '/' },
             { text: 'Enter as a Guide', route: '/guide' },
             { text: 'Enter as a Participant', route: '/traveler' },
