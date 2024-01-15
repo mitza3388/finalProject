@@ -1,0 +1,24 @@
+.gallery-item {
+    margin: 10px;
+    max-width: 250px; 
+    max-height: 150px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }  
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+  }
+
+  .container {
+    margin: 0 auto;
+  }
+  

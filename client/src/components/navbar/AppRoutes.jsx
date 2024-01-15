@@ -20,6 +20,7 @@ import EmailComponent from '../emailComponent/EmailComponent'
 import InviteFriends from '../inviteFriends/InviteFriends'
 import JoinTripConfirmation from '../joinTripConfirmation/JoinTripConfirmation'
 import Logout from '../../pages/Logout'
+import Gallery from '../gallery/Gallery'
 
 // import ResumesList from '../../pages/resumeList/ResumesList'
 
@@ -62,6 +63,7 @@ export default function AppRoutes() {
 
       <Route path='/createEquipmentList' element={<EquipmentList/>}/>
       <Route path='/MyTrips' element={<MyTrips/>}/>
+      <Route path='/gallery' element={<Gallery />} />
 
 //       <Route path='/traveler' element={<TravelerTrips/>}/>
       <Route path='/viewTrip/:tripId' element={<ViewTrip />} />
