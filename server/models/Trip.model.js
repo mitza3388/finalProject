@@ -10,6 +10,9 @@ const tripSchema = new mongoose.Schema({
     type: String,
     required: [true, 'name is requred'],
   },
+  image: {
+    type: String
+  },
   guideId: {
     type: String,
     required: false
