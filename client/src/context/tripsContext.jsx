@@ -40,11 +40,21 @@ const TripProvider = ({ children }) => {
   //   });
   // };
 
+  ///שינוי יעל סטאר 15/01
+  // const updateTrip = (fieldNameOrTrip, value) => {
+  //   if(typeof fieldNameOrTrip === "object" ) {
+  //     setTrip({...fieldNameOrTrip})
+  //     return
+  //   }
+
+
   const updateTrip = (fieldNameOrTrip, value) => {
-    if(typeof fieldNameOrTrip === "object" ) {
-      setTrip({...fieldNameOrTrip})
-      return
+    if (typeof fieldNameOrTrip === "object") {
+      setTrip({ ...fieldNameOrTrip, route: fieldNameOrTrip.route || [] });
+      return;
     }
+
+    //סוף שינוי יעל סטאר
     
     setTrip((prevTrip) => {
       // Clone the previous trip
