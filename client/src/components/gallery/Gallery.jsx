@@ -7,35 +7,30 @@ const Gallery = () => {
   const [file, setFile] = useState(null);
   const [formData, setFormData] = useState(new FormData());
 
-  const handleUpload = () => {
-    formData.append('file', file);
-    axios.post('http://localhost:1200/api/v1/upload', formData)
-      .then(res => {
-        console.log(res);
-        // אתה יכול להוסיף ידית את הקובץ שהוספת ל- files כאן
-        setFiles([...files, res.data]);  // או כל שיטה אחרת שתגיע עם הקובץ החדש
-      })
-      .catch(err => console.log(err));
-  };
+  const handleUpload = async () => {
+    // אם יש קובץ נוסף להוסיף
+    if (file) {
+      formData.delete('file'); // נקה את הקובץ הקיים ב- formData
+      formData.append('file', file); // הוסף את הקובץ החדש
 
+      try {
+        const res = await axios.post('http://localhost:1200/api/v1/upload', formData);
+        setFiles([...files, res.data]);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   useEffect(() => {
     axios.get('http://localhost:1200/api/v1/getImages')
       .then(res => {
-        // פילטר לבדיקה של כל תמונה עם axios
         const promises = res.data.map(image => {
           return axios.head(`http://localhost:1200/images/${image.image}`)
-            .then(response => {
-              // אם התמונה קיימת, נחזיר אותה
-              return image;
-            })
-            .catch(error => {
-              // אם התמונה לא קיימת, נחזיר null
-              return null;
-            });
+            .then(() => image)
+            .catch(() => null);
         });
 
-        // אחרי שכל הפרומיססים סיימו, נסנן את התמונות שלא נמצאו
         Promise.all(promises)
           .then(existingImages => {
             const filteredImages = existingImages.filter(image => image !== null);
@@ -63,6 +58,6 @@ const Gallery = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Gallery;
