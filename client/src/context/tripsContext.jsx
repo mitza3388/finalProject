@@ -62,6 +62,14 @@ const TripProvider = ({ children }) => {
   
       // If the first argument is a string, treat it as a field name
       if (typeof fieldNameOrTrip === 'string') {
+
+        if (fieldNameOrTrip === 'equipmentList' && Array.isArray(value)) {
+          return {
+            ...newTrip,
+            [fieldNameOrTrip]: [...value],
+          };
+        }
+  
         // If the field is 'route' and the value is an object
         if (fieldNameOrTrip === 'route' && typeof value === 'object') {
           // Clone the current route array
@@ -92,7 +100,7 @@ const TripProvider = ({ children }) => {
 
 
   return (
-    <TripContext.Provider value={{ trip, updateTrip }}>
+    <TripContext.Provider value={{ trip, updateTrip,setTrip }}>
       {children}
     </TripContext.Provider>
   );

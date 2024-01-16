@@ -47,12 +47,26 @@ const ViewTrip = () => {
   console.log(landmarks);
 
   return (
-    <div>
-      <h1>{`${trip.tripName}`}</h1>
-      <LandmarkTimeline  ></LandmarkTimeline>
-      <MapWithWaypoints route={landmarks}></MapWithWaypoints>
-      {/* <WaypointsAccordion></WaypointsAccordion>*/}
-      <TravelerChips></TravelerChips>
+<div className='d-flex p-3' style={{ width: '900px' }}>
+      <div className='p-3'>
+        <h1>{`${trip.tripName}`}</h1>
+        <div className="container mt-4">
+          <h5>Equipment List</h5>
+          <ul className="list-group">
+            {trip.equipmentList?.map((equipment, index) => (
+              <li key={index} className="list-group-item">
+                {equipment}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <TravelerChips></TravelerChips>
+
+      </div>
+      <div className='p-4'>
+        <LandmarkTimeline  ></LandmarkTimeline>
+        </div>
+        <MapWithWaypoints route={landmarks}></MapWithWaypoints>
     </div>
   );
 }

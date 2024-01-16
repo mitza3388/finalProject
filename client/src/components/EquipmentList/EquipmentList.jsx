@@ -25,11 +25,13 @@ const EquipmentList = () => {
 
 
 
-  const handleSaveList = () => {
+  const handleSaveList = async() => {
 
     updateTrip('equipmentList', [...items]);
 
-    console.log('List saved:', items);
+
+
+    console.log('List saved:', trip.equipmentList);
     // Add logic to save or process the list data
   };
 

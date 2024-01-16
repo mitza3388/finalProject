@@ -13,7 +13,7 @@ import InviteFriends from '../../components/inviteFriends/InviteFriends';
 
 const CreateNewTrip = () => {
   const navigate = useNavigate();
-  const { trip, updateTrip } = useTripContext();
+  const { trip, updateTrip,setTrip } = useTripContext();
   // const { landmarks } = useLandmarksContext([]);
   const [showModal, setShowModal] = useState(false);
   const [showInviteFriendsModal, setShowInviteFriendsModal] = useState(false);
@@ -66,8 +66,9 @@ const CreateNewTrip = () => {
         const newTrip = await response.data; // Adjust this based on your API response
         // updateTrip(newTrip); // Update the context with the newly created trip
         console.log("new trip added!!!", trip);
-        updateTrip("tripName", "");
-        updateTrip("route", []);
+        setTrip({});
+        // updateTrip("tripName", "");
+        // updateTrip("route", []);
         console.log(trip)
         navigate('/guide');
       }
@@ -121,13 +122,13 @@ const CreateNewTrip = () => {
 
                   </LandmarkTimeline>
                 //סוף שיניוי
-                  <Button
+                  {/* <Button
                     className='mt-4 bg-danger px-3'
                     onClick={() => navigate('/createEquipmentList')}>
                     Add --- List
                   </Button>
 
-
+ */}
                 </div>
 
               </div>
