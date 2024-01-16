@@ -33,13 +33,14 @@ const tripSchema = new mongoose.Schema({
       nextLandmarkId: Number
     }
   ],
-  equipmentList: [
-    {
-      // userName: String,
-      productName: String
-      // productId: Number
-    }
-  ]
+  // equipmentList: [
+  //   {
+  //     // userName: String,
+  //     productName: String
+  //     // productId: Number
+  //   }
+  // ]
+  equipmentList: [String]
 });
 
 // Create the model for the Trip collection
