@@ -15,7 +15,7 @@ const LandmarkTimeline = () => {
   // const {landmarks,setLandmarks} = useLandmarksContext();
   const { trip } = useTripContext();
   const landmarks = trip.route;
-  if (landmarks.length === 0)
+  if (!landmarks ||landmarks.length === 0)
     return <div>It seems that the guide has not yet created a route for the trip</div>;
     
   return (
