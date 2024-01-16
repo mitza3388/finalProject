@@ -28,7 +28,7 @@
 
 import React from 'react';
 import TravelerChips from '../travelerChips/TravelerChips';
-import LandmarkTimeline from '../landmarkTimeline/LandmarkTimeline';
+import LandmarkTimeline from '../landmarkTimelineForView/LandmarkTimeline';
 import { useLocation } from 'react-router-dom';
 import MapWithWaypoints from '../route/route';
 
