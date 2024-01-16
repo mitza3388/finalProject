@@ -13,7 +13,7 @@ import InviteFriends from '../../components/inviteFriends/InviteFriends';
 
 const CreateNewTrip = () => {
   const navigate = useNavigate();
-  const { trip, updateTrip,setTrip } = useTripContext();
+  const { trip, updateTrip, setTrip } = useTripContext();
   // const { landmarks } = useLandmarksContext([]);
   const [showModal, setShowModal] = useState(false);
   const [showInviteFriendsModal, setShowInviteFriendsModal] = useState(false);
@@ -54,30 +54,24 @@ const CreateNewTrip = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // updateTrip('route', [...landmarks]);
-    // console.log("trip after landmark",trip);
 
     try {
       const response = await fetchData('trips/addNewTrip', 'POST', trip);
-      console.log(response);
+
       if (!response) {
         console.log('Bad Request');
       } else {
-        const newTrip = await response.data; // Adjust this based on your API response
-        // updateTrip(newTrip); // Update the context with the newly created trip
-        console.log("new trip added!!!", trip);
-        setTrip({});
-        // updateTrip("tripName", "");
-        // updateTrip("route", []);
-        console.log(trip)
+        const newTrip = await response.data;
+
+        // Update the context with the newly created trip
+        setTrip({ tripName: '', route: [] }); // Reset the trip to an empty state
+
+        console.log("new trip added!!!", newTrip);
         navigate('/guide');
       }
     } catch (error) {
       console.error('Error:', error.message);
     }
-
-
-
   };
 
 
@@ -95,6 +89,9 @@ const CreateNewTrip = () => {
                 name='tripName'
                 value={trip.tripName}
                 onChange={handleChange}
+                required
+                onInvalid={(e) => e.target.setCustomValidity('Trip name must be completed.')} // Custom validation message
+                onInput={(e) => e.target.setCustomValidity('')} // Reset custom validity on input
               />
             </FloatingLabel>
 

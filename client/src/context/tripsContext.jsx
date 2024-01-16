@@ -48,18 +48,23 @@ const TripProvider = ({ children }) => {
   //   }
 
 
+
+
+  
+
   const updateTrip = (fieldNameOrTrip, value) => {
     if (typeof fieldNameOrTrip === "object") {
       setTrip({ ...fieldNameOrTrip, route: fieldNameOrTrip.route || [] });
       return;
     }
-
+  
+   
     //סוף שינוי יעל סטאר
-    
+
     setTrip((prevTrip) => {
       // Clone the previous trip
       const newTrip = { ...prevTrip };
-  
+
       // If the first argument is a string, treat it as a field name
       if (typeof fieldNameOrTrip === 'string') {
 
@@ -69,38 +74,38 @@ const TripProvider = ({ children }) => {
             [fieldNameOrTrip]: [...value],
           };
         }
-  
+
         // If the field is 'route' and the value is an object
         if (fieldNameOrTrip === 'route' && typeof value === 'object') {
           // Clone the current route array
           const newRoute = [...newTrip.route];
-  
+
           // Add the new value to the route array
           newRoute.push(value);
-  
+
           // Update the new trip with the modified route array
           return {
             ...newTrip,
             [fieldNameOrTrip]: newRoute,
           };
         }
-  
+
         // For other fields, update as usual
         return {
           ...newTrip,
           [fieldNameOrTrip]: value,
         };
       }
-  
+
       // If the first argument is an object, replace the entire trip
       return fieldNameOrTrip;
     });
   };
-  
+
 
 
   return (
-    <TripContext.Provider value={{ trip, updateTrip,setTrip }}>
+    <TripContext.Provider value={{ trip, updateTrip, setTrip }}>
       {children}
     </TripContext.Provider>
   );
